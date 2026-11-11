@@ -3,7 +3,7 @@
   "id": "web-app",
   "version": 1,
   "name": "Web app + design assets",
-  "summary": "Web application workspace with handed-over design sources, design tokens, raw and optimised assets, app code, unit and e2e tests, and Git LFS rules.",
+  "summary": "Folder layout for design sources, tokens, application code and tests, with Git LFS rules; no application code included.",
   "tags": [
     "frontend",
     "website",
@@ -236,14 +236,14 @@
   ],
   "agents": {
     "purpose": [
-      "`{{project}}` is a web application workspace with handed-over design sources, tokens, application code, tests and deployment config."
+      "`{{project}}` provides folders for design inputs, application code, tests and deployment configuration; populate them before use."
     ],
     "rules": [
       "- Each folder's purpose is in `FOLDERS.md`; read it before adding a file.",
       "- Never edit `design/sources/`; a design change comes from the designer.",
       "- Asset flow is one way: `design/exports/` -> the optimise script in `scripts/` (if none exists yet, ask) -> `src/assets/` or `public/`.",
       "- Colours, font sizes and spacing come from `design/tokens/`; never hard-code a value that has a token.",
-      "- Generated token CSS in `src/styles/` is rebuilt by script, never hand-edited.",
+      "- If you add token generation, rebuild generated CSS with your script; no generator or token CSS is included.",
       "- A file goes in `public/` only if it needs a fixed URL (self-hosted web fonts served by URL go in `public/fonts/`); everything else goes in `src/assets/`.",
       "- Never commit `.env`; add new variable names to `.env.example` with no value.",
       "- Create `package.json` with your package manager, not by hand. Adding or upgrading a dependency needs approval.",

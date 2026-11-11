@@ -59,7 +59,7 @@
     },
     {
       "path": "tools/convert",
-      "summary": "Conversion scripts (gltf-transform, toktx, USD) writing to `web/public/`.",
+      "summary": "Reserved for conversion scripts you must supply; none are included.",
       "listed": false
     },
     {
@@ -214,7 +214,7 @@
     },
     {
       "path": "assets/_template/export/glb",
-      "summary": "Source `.glb` exports imported by Godot and compressed by `tools/convert/`.",
+      "summary": "Folder for source GLB exports; set up imports and conversion yourself.",
       "listed": false
     },
     {
@@ -639,12 +639,12 @@
     },
     {
       "path": "web/public/models",
-      "summary": "Web-ready compressed `.glb` models (Draco / meshopt) from `tools/convert/`.",
+      "summary": "Folder for web models compressed by your own conversion scripts.",
       "listed": false
     },
     {
       "path": "web/public/textures",
-      "summary": "Web-ready `.ktx2` compressed textures from `tools/convert/`.",
+      "summary": "Folder for web textures compressed by your own conversion scripts.",
       "listed": false
     },
     {
@@ -962,7 +962,7 @@
         "- `tests/`: Web front-end tests.",
         "",
         "## Rules",
-        "- Treat the asset's `export/glb/` as the source GLB and `textures/baked/` as the source textures; run the conversion scripts in `tools/convert/` to write compressed Draco/meshopt `.glb` files to `public/models/` (the one home for web-ready GLBs) and `.ktx2` files to `public/textures/`.",
+        "- Implement and verify conversion scripts first; none are included. Store converted models and textures under web/public/.",
         "- Never place DCC sources (`.blend`, `.hip`, `.ztl`, `.spp`) or uncompressed authoring textures (`.exr`, `.psd`, `.tif`) under `web/`.",
         "- `dist/` and `node_modules/` are generated build/install output and are ignored by Git."
       ]
@@ -1462,7 +1462,7 @@
       "- One folder per asset in the deepest existing category folder (e.g. `assets/environments/modular/<asset_id>/`), copied from `assets/_template/` with `asset.yaml` filled in.",
       "- Per asset: editable sources in `source/<tool>/`, full-res texture sources in `textures/source/`, baked textures in `textures/baked/`, turntables/thumbnails in `preview/`, and final published files in `export/` (`fbx/`, `glb/`, `usd/`, `abc/`, `vdb/`).",
       "- Never put DCC source files (`.blend`, `.hip`, `.ztl`, `.spp`) in engine or web folders; assets made in Blender or Houdini arrive there as exports from the asset's `export/` folder, while engine-native assets (Blueprints, maps, materials, `.tres`, `.gdshader`) are authored in the engine.",
-      "- The asset's `export/glb/` is the source GLB; `tools/convert/` scripts write the compressed web copy (Draco/meshopt GLB, KTX2 textures) to `web/public/models/` and `web/public/textures/`.",
+      "- Supply conversion scripts before creating compressed web copies; this kit provides only destination folders.",
       "- Create `Studio.uproject`, `project.godot`, `export_presets.cfg` and `package.json` with the real tool (Unreal Editor, Godot editor, or the package manager/project scaffolder), never by hand.",
       "- Record only verified tool versions in `TOOLS.lock`.",
       "- `.agents/lanes/<agent>/` is your only scratch space for files outside the engines (unreviewed Unreal assets go in `engines/ue5/Studio/Content/_Dev/`); put handoff notes in `.agents/handoff/`."

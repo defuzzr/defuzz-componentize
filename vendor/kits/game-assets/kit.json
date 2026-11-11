@@ -259,7 +259,7 @@
   ],
   "agents": {
     "purpose": [
-      "`{{project}}` is a game workspace: design, the Unreal project, shared source assets and the tools that move assets into the engine."
+      "`{{project}}`: folders for your game design, Unreal project, source assets and future asset-transfer tools; no engine integration included."
     ],
     "rules": [
       "- One folder per asset: `assets/<category>/<asset_id>/` with `asset.json`, `source/` and `exports/`. Categories: `environments/kits`, `environments/locations`, `materials`, `characters`, `props`, `effects`, `audio`, `ui`.",

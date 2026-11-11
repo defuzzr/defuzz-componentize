@@ -37,7 +37,7 @@ export const BUNDLED_KITS_FALLBACK = [
   {
     id: 'component-library',
     name: 'Reusable Python code library',
-    summary: 'Reusable Python code library: snake_case.py modules with a COMPONENTS.md index and tests, thin runner scripts and componentize specs; not a UI or design-system component library.',
+    summary: 'Python library scaffold with an empty component index and folders for your modules, tests, runners and specs.',
     tags: ['python', 'code', 'modules', 'components', 'reuse', 'componentize'],
     availability: 'available',
     version: 3
@@ -125,7 +125,7 @@ export const BUNDLED_KITS_FALLBACK = [
   {
     id: 'web-app',
     name: 'Web app + design assets',
-    summary: 'Web application workspace with handed-over design sources, design tokens, raw and optimised assets, app code, unit and e2e tests, and Git LFS rules.',
+    summary: 'Folder layout for design sources, tokens, application code and tests, with Git LFS rules; no application code included.',
     tags: ['frontend', 'website', 'figma', 'tokens', 'css', 'handoff', 'ui', 'github'],
     availability: 'available',
     version: 1

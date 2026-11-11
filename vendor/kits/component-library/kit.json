@@ -3,7 +3,7 @@
   "id": "component-library",
   "version": 3,
   "name": "Reusable Python code library",
-  "summary": "Reusable Python code library: snake_case.py modules with a COMPONENTS.md index and tests, thin runner scripts and componentize specs; not a UI or design-system component library.",
+  "summary": "Python library scaffold with an empty component index and folders for your modules, tests, runners and specs.",
   "tags": [
     "python",
     "code",

@@ -1,7 +1,7 @@
 {
   "origin": "the author's upstream source tree (componentize engine and hermes_audit modules); not published separately",
   "license": "MIT",
-  "source_commit": "ee835599e433dadaee9cbfe84e893c60c37176fb",
+  "source_commit": "1dd590cbf321f38b2c47da2418af83064949f1d9",
   "files": {
     "componentize/_plugins.py": {
       "source_sha256": "f447af2854769feef26550f494cd2d39a04c4d05b7706f85de7fb4361da49061",
@@ -60,12 +60,12 @@
       "vendor_sha256": "e0a5ce5452d3b44e156542400e37f78841c5a00db3066b4c0e384d35b31f8901"
     },
     "kits/component-library/kit.json": {
-      "source_sha256": "3d168fc01cb7bf19b50391023b658605cf3cec91406b598dfac1d51e839cfc75",
-      "vendor_sha256": "3d168fc01cb7bf19b50391023b658605cf3cec91406b598dfac1d51e839cfc75"
+      "source_sha256": "3f7d856260ea4d8d42b1a5f3b0f81407286f5db3f7dbd616b624767421fe02df",
+      "vendor_sha256": "3f7d856260ea4d8d42b1a5f3b0f81407286f5db3f7dbd616b624767421fe02df"
     },
     "kits/game-assets/kit.json": {
-      "source_sha256": "8b7209c7e576fdec522b5958308c0a7644b002b8ed22670bc68580c2955577d7",
-      "vendor_sha256": "8b7209c7e576fdec522b5958308c0a7644b002b8ed22670bc68580c2955577d7"
+      "source_sha256": "5a58f9e181ef4f6c5f5b83a52cc6f40b056fbb05cd8bd0d407086dba02d1d013",
+      "vendor_sha256": "5a58f9e181ef4f6c5f5b83a52cc6f40b056fbb05cd8bd0d407086dba02d1d013"
     },
     "kits/video-production/kit.json": {
       "source_sha256": "79310240f32aff47c7532cad2892da0cf18c79d0d34882c97f2a4cff2728bd8a",
@@ -104,16 +104,16 @@
       "vendor_sha256": "f8ef2ee22ed20bc95554aed70a0b86813fabf3398b0f07272724d9021957c9ee"
     },
     "kits/studio-3d/kit.json": {
-      "source_sha256": "273ceb2fda4befe1a87484a75990c61f105b2fe4b669433ca7a741487cb3c693",
-      "vendor_sha256": "273ceb2fda4befe1a87484a75990c61f105b2fe4b669433ca7a741487cb3c693"
+      "source_sha256": "17837b0058a7f7739c4dfcfcc868c6c402d110913ade9c77c399bcd38693a558",
+      "vendor_sha256": "17837b0058a7f7739c4dfcfcc868c6c402d110913ade9c77c399bcd38693a558"
     },
     "kits/video-channel/kit.json": {
       "source_sha256": "753b8520d9580fd7b2eda01743865d4f367bcb01ccbec3b2107735bec3bbed18",
       "vendor_sha256": "753b8520d9580fd7b2eda01743865d4f367bcb01ccbec3b2107735bec3bbed18"
     },
     "kits/web-app/kit.json": {
-      "source_sha256": "473b1ae83ae0a4d96bd819cf4ba6ae5bd4ad08f685430288d951dcbddbcead7f",
-      "vendor_sha256": "473b1ae83ae0a4d96bd819cf4ba6ae5bd4ad08f685430288d951dcbddbcead7f"
+      "source_sha256": "1fef30274be1721dcdb735d53a64c0d4f613546ac99d74a7d073b723134b20b0",
+      "vendor_sha256": "1fef30274be1721dcdb735d53a64c0d4f613546ac99d74a7d073b723134b20b0"
     }
   }
 }
