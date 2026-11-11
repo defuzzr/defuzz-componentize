@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "id": "component-library",
+  "version": 3,
+  "name": "Reusable Python code library",
+  "summary": "Reusable Python code library: snake_case.py modules with a COMPONENTS.md index and tests, thin runner scripts and componentize specs; not a UI or design-system component library.",
+  "tags": [
+    "python",
+    "code",
+    "modules",
+    "components",
+    "reuse",
+    "componentize"
+  ],
+  "variables": {
+    "components": {
+      "default": "components",
+      "description": "Folder holding the components and COMPONENTS.md"
+    },
+    "vendor_root": {
+      "default": "components",
+      "description": "Path the checker expects in a vendored copy's header"
+    }
+  },
+  "dirs": [
+    {
+      "path": "{{components}}",
+      "summary": "Reusable `snake_case.py` modules. Index: `{{components}}/COMPONENTS.md`.",
+      "why": "single source of truth for reusable logic"
+    },
+    {
+      "path": "{{components}}/tests",
+      "summary": "Component tests.",
+      "why": "every component is tested before reuse"
+    },
+    {
+      "path": "scripts",
+      "summary": "Thin runners (CLI entrypoints) that call components.",
+      "why": "runners stay separate from logic"
+    },
+    {
+      "path": "specs",
+      "summary": "Componentize spec files, one per job.",
+      "why": "receipts are reproducible from the spec"
+    }
+  ],
+  "files": [
+    {
+      "path": "{{components}}/__init__.py",
+      "lines": [
+        "\"\"\"Reusable components. Index: COMPONENTS.md.\"\"\""
+      ]
+    },
+    {
+      "path": "{{components}}/COMPONENTS.md",
+      "lines": [
+        "# Component Index",
+        "",
+        "Index format: one line per reusable component:",
+        "`<module>.<function>(<signature>)` — what it does — return dict shape.",
+        "Read this index before writing any component; update the relevant line in the same commit when adding or changing a component.",
+        "Standalone projects that vendor a component module must include the top-of-file header `# vendored from {{vendor_root}}/<module>.py, do not edit`.",
+        ""
+      ]
+    }
+  ],
+  "agents": {
+    "purpose": [
+      "This folder is a library of reusable components. Write each piece of logic once, as an importable component, and reuse it. Never rebuild something that already exists.",
+      "`.componentize/` holds receipt state written by the tool. It is gitignored. Never hand-edit it.",
+      "Run `hermes componentize library` to check this layout. Componentize work starts only when the user says \"componentize <name>\"."
+    ],
+    "rules": [
+      "**Scope:** applies to new Python files and files you are substantially rewriting. Do not refactor, rename, or restructure existing files unless asked. If an existing file violates these rules, mention it and move on.",
+      "",
+      "#### 1. Reuse before you write",
+      "- Before writing any check, audit, or utility, read `{{components}}/COMPONENTS.md`.",
+      "- If a component covers the need, import it. If one nearly covers it, extend it with a parameter instead of writing a new one.",
+      "- When you add or change a component, update its line in `COMPONENTS.md` in the same commit: function name, inputs, what it returns.",
+      "",
+      "#### 2. Where code lives",
+      "- Anything likely to be needed twice goes in the shared package: one `snake_case.py` module per component in `{{components}}/`.",
+      "- One-off tools may be a single standalone `snake_case.py` file. Never create boilerplate files (`exceptions.py`, `interfaces.py`, `constants.py`).",
+      "- Keep functions short. Past ~300 lines, organise into private `_helper` functions in the same module, not into sibling modules (that would break section 5).",
+      "- Never use hyphens in new `.py` filenames.",
+      "- `{{components}}/` is the source of truth. A project that must ship standalone carries a vendored copy with the header `# vendored from {{vendor_root}}/<module>.py, do not edit`. Never edit a vendored copy; change the source and re-copy.",
+      "",
+      "#### 3. Components: plain data in, JSON-ready data out",
+      "- Components are pure, importable functions. No `print()`, `input()`, `sys.exit()`, or `argparse` inside them. `logging` to stderr is allowed.",
+      "- Return JSON-serializable data. Convert `Path` to `str`.",
+      "- Every result includes `ok: bool`, `status: \"pass\" | \"fail\" | \"error\"`, `error: str | None`, and `findings: list[{id, severity, detail, fix}]` with `severity` in `\"error\" | \"warn\" | \"info\"`. `fail` means it ran and found a problem; `error` means it could not run.",
+      "- Unknown is not a verdict: when a reading cannot be obtained, record it as `None`/`\"unknown\"` and emit at most an `info` finding.",
+      "- Catch only expected operational errors (`OSError`, `subprocess.TimeoutExpired`, `json.JSONDecodeError`, `UnicodeDecodeError`, `ValueError` from parsing). Never use bare `except` or `except Exception`.",
+      "",
+      "#### 4. Explicit context",
+      "- Components never read `~`, `Path.home()`, `Path.cwd()`, or environment variables, including in default argument values. Target paths and the environment mapping are required parameters.",
+      "- Every `subprocess.run` call uses a list of arguments (no `shell=True`), explicit `cwd`, `capture_output=True`, `text=True`, `errors=\"replace\"`, `check=False`, and an explicit `timeout`.",
+      "",
+      "#### 5. Standard library only",
+      "- Component modules import only the Python standard library and nothing from sibling modules. Each module must work when copied alone into another project.",
+      "",
+      "#### 6. Thin runners",
+      "- A runner only parses input, resolves default paths and environment, calls components, formats output (human text or `--json`), and returns.",
+      "- CLI runners define `main(argv: list[str] | None = None) -> int` at module level, with only `raise SystemExit(main())` under `if __name__ == \"__main__\":`.",
+      "- Exit codes: `0` all checks pass, `1` at least one `fail`, `2` usage error or any `error`."
+    ]
+  },
+  "gitignore": [
+    ".componentize/"
+  ]
+}

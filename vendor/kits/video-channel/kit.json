@@ -1,0 +1,343 @@
+{
+  "schema_version": 1,
+  "id": "video-channel",
+  "version": 1,
+  "name": "YouTube and short-form video channel",
+  "summary": "YouTube and short-form channel workspace with brand assets, reusable library, idea backlog, episode template, shorts, analytics and Git LFS rules.",
+  "tags": [
+    "video",
+    "channel",
+    "youtube",
+    "shorts",
+    "episodes",
+    "editing",
+    "captions",
+    "thumbnails",
+    "vlog"
+  ],
+  "dirs": [
+    {
+      "path": "brand",
+      "summary": "Logos, fonts, colours, intro, outro, lower thirds. Read-only.",
+      "why": "channel identity stays consistent and untouched"
+    },
+    {
+      "path": "templates",
+      "summary": "Thumbnail, title-card and edit-project templates.",
+      "why": "starting templates stay separate from episode edits"
+    },
+    {
+      "path": "library",
+      "summary": "Material reused across episodes: music, sfx, broll, overlays.",
+      "why": "shared media and licences live in one place"
+    },
+    {
+      "path": "library/music",
+      "summary": "Licensed tracks, each with licence proof.",
+      "listed": false
+    },
+    {
+      "path": "library/sfx",
+      "summary": "Sound effects.",
+      "listed": false
+    },
+    {
+      "path": "library/broll",
+      "summary": "Evergreen stock and own footage.",
+      "listed": false
+    },
+    {
+      "path": "library/overlays",
+      "summary": "Transitions, LUTs and graphics packs.",
+      "listed": false
+    },
+    {
+      "path": "ideas",
+      "summary": "Backlog: one .md per idea not yet an episode.",
+      "why": "unscheduled pitches stay separate from active episodes"
+    },
+    {
+      "path": "episodes",
+      "summary": "One folder per episode (`YYYY-MM-DD_slug`), copied from `episodes/_template/`.",
+      "why": "every episode is self-contained"
+    },
+    {
+      "path": "episodes/_template",
+      "summary": "Copy this to start an episode.",
+      "listed": false
+    },
+    {
+      "path": "episodes/_template/idea",
+      "summary": "Pitch, angle, hook, research links.",
+      "listed": false
+    },
+    {
+      "path": "episodes/_template/script",
+      "summary": "Drafts and the final script.md.",
+      "listed": false
+    },
+    {
+      "path": "episodes/_template/voiceover",
+      "summary": "Recorded or generated takes and the chosen take.",
+      "listed": false
+    },
+    {
+      "path": "episodes/_template/footage",
+      "summary": "Camera and screen-capture originals. Read-only.",
+      "listed": false
+    },
+    {
+      "path": "episodes/_template/broll",
+      "summary": "B-roll and generated clips for this episode only.",
+      "listed": false
+    },
+    {
+      "path": "episodes/_template/graphics",
+      "summary": "Titles, charts and overlays made for this episode.",
+      "listed": false
+    },
+    {
+      "path": "episodes/_template/audio",
+      "summary": "Music and sfx actually used in this cut.",
+      "listed": false
+    },
+    {
+      "path": "episodes/_template/edit",
+      "summary": "Editor project files.",
+      "listed": false
+    },
+    {
+      "path": "episodes/_template/captions",
+      "summary": "Subtitle files (.srt and .vtt), one per language.",
+      "listed": false
+    },
+    {
+      "path": "episodes/_template/thumbnails",
+      "summary": "Working files and exported candidates.",
+      "listed": false
+    },
+    {
+      "path": "episodes/_template/renders",
+      "summary": "Preview and draft exports. Ignored by Git and disposable.",
+      "listed": false
+    },
+    {
+      "path": "episodes/_template/final",
+      "summary": "Approved master and short-form cut-downs.",
+      "listed": false
+    },
+    {
+      "path": "episodes/_template/published",
+      "summary": "Live title, description, tags, chapters, URL.",
+      "listed": false
+    },
+    {
+      "path": "shorts",
+      "summary": "One folder per standalone short, copied from `episodes/_template/`.",
+      "why": "standalone shorts stay separate from full episodes"
+    },
+    {
+      "path": "analytics",
+      "summary": "Exported stats and notes on what performed.",
+      "why": "performance data informs future episodes"
+    },
+    {
+      "path": "cache",
+      "summary": "Proxies, render cache, transcripts. Ignored by Git and disposable.",
+      "why": "disposable cache files never bloat the repository"
+    }
+  ],
+  "files": [
+    {
+      "path": "FOLDERS.md",
+      "lines": [
+        "# Folder map",
+        "",
+        "What each folder is for. Read this before adding a file.",
+        "",
+        "- `brand/`: Logos, fonts, colours, intro, outro, lower thirds. Read-only.",
+        "- `templates/`: Thumbnail, title-card and edit-project templates.",
+        "- `library/`: Material reused across episodes: music, sfx, broll, overlays.",
+        "- `library/music/`: Licensed tracks, each with licence proof.",
+        "- `library/sfx/`: Sound effects.",
+        "- `library/broll/`: Evergreen stock and own footage.",
+        "- `library/overlays/`: Transitions, LUTs and graphics packs.",
+        "- `ideas/`: Backlog: one .md per idea not yet an episode.",
+        "- `episodes/`: One folder per episode (`YYYY-MM-DD_slug`), copied from `episodes/_template/`.",
+        "- `episodes/_template/`: Copy this to start an episode.",
+        "- `episodes/_template/idea/`: Pitch, angle, hook, research links.",
+        "- `episodes/_template/script/`: Drafts and the final script.md.",
+        "- `episodes/_template/voiceover/`: Recorded or generated takes and the chosen take.",
+        "- `episodes/_template/footage/`: Camera and screen-capture originals. Read-only.",
+        "- `episodes/_template/broll/`: B-roll and generated clips for this episode only.",
+        "- `episodes/_template/graphics/`: Titles, charts and overlays made for this episode.",
+        "- `episodes/_template/audio/`: Music and sfx actually used in this cut.",
+        "- `episodes/_template/edit/`: Editor project files.",
+        "- `episodes/_template/captions/`: Subtitle files (.srt and .vtt), one per language.",
+        "- `episodes/_template/thumbnails/`: Working files and exported candidates.",
+        "- `episodes/_template/renders/`: Preview and draft exports. Ignored by Git and disposable.",
+        "- `episodes/_template/final/`: Approved master and short-form cut-downs.",
+        "- `episodes/_template/published/`: Live title, description, tags, chapters, URL.",
+        "- `shorts/`: One folder per standalone short, copied from `episodes/_template/`.",
+        "- `analytics/`: Exported stats and notes on what performed.",
+        "- `cache/`: Proxies, render cache, transcripts. Ignored by Git and disposable."
+      ]
+    },
+    {
+      "path": "brand/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "templates/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "library/music/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "library/sfx/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "library/broll/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "library/overlays/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "ideas/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "episodes/_template/episode.yaml",
+      "lines": [
+        "# Episode metadata: record status, title, publish date and links.",
+        "status: idea",
+        "title: \"\"",
+        "publish_date: \"\"",
+        "links: []"
+      ]
+    },
+    {
+      "path": "episodes/_template/idea/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "episodes/_template/script/script.md",
+      "lines": [
+        "# Script",
+        "",
+        "Record the final episode script here."
+      ]
+    },
+    {
+      "path": "episodes/_template/voiceover/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "episodes/_template/footage/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "episodes/_template/broll/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "episodes/_template/graphics/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "episodes/_template/audio/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "episodes/_template/edit/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "episodes/_template/captions/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "episodes/_template/thumbnails/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "episodes/_template/renders/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "episodes/_template/final/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "episodes/_template/published/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "shorts/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "analytics/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "cache/.gitkeep",
+      "lines": []
+    }
+  ],
+  "agents": {
+    "purpose": [
+      "`{{project}}` is a YouTube and short-form video channel workspace.",
+      "Start an episode or a short by copying `episodes/_template/`."
+    ],
+    "rules": [
+      "- Each folder's purpose is in `FOLDERS.md`; read it before adding a file.",
+      "- One episode = one folder copied from `episodes/_template/`; nothing for an episode lives outside it.",
+      "- `<episode>` is that episode's own folder under `episodes/` (or that short's own folder under `shorts/`).",
+      "- Never edit, trim or rename files in `<episode>/footage/`; work on copies or in the editor.",
+      "- Draft exports go to `<episode>/renders/`; only the approved master goes to `<episode>/final/`.",
+      "- Captions are generated from the final master, not from the script.",
+      "- Every music or stock file used must have a licence file in `library/` beside it.",
+      "- Update `<episode>/episode.yaml` status on every stage change: idea, script, vo, edit, final, published.",
+      "- Uploading, scheduling or publishing needs approval.",
+      "- After publishing, save the exact live title, description, tags and URL to `<episode>/published/`.",
+      "- Never modify `brand/`.",
+      "- Run `git lfs install` once before the first commit."
+    ]
+  },
+  "gitignore": [
+    "cache/*",
+    "!cache/.gitkeep",
+    "episodes/*/renders/*",
+    "!episodes/*/renders/.gitkeep",
+    "shorts/*/renders/*",
+    "!shorts/*/renders/.gitkeep",
+    ".DS_Store",
+    "Thumbs.db",
+    ".env",
+    ".env.*",
+    "!.env.example"
+  ],
+  "gitattributes": [
+    "*.mp4 filter=lfs diff=lfs merge=lfs -text",
+    "*.MP4 filter=lfs diff=lfs merge=lfs -text",
+    "*.mov filter=lfs diff=lfs merge=lfs -text",
+    "*.MOV filter=lfs diff=lfs merge=lfs -text",
+    "*.mkv filter=lfs diff=lfs merge=lfs -text",
+    "*.webm filter=lfs diff=lfs merge=lfs -text",
+    "*.wav filter=lfs diff=lfs merge=lfs -text",
+    "*.mp3 filter=lfs diff=lfs merge=lfs -text",
+    "*.aif filter=lfs diff=lfs merge=lfs -text",
+    "*.psd filter=lfs diff=lfs merge=lfs -text",
+    "*.png filter=lfs diff=lfs merge=lfs -text",
+    "*.jpg filter=lfs diff=lfs merge=lfs -text",
+    "*.drp filter=lfs diff=lfs merge=lfs -text",
+    "*.prproj filter=lfs diff=lfs merge=lfs -text",
+    "*.aep filter=lfs diff=lfs merge=lfs -text"
+  ]
+}

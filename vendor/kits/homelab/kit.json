@@ -1,0 +1,345 @@
+{
+  "schema_version": 1,
+  "id": "homelab",
+  "version": 1,
+  "name": "Homelab infrastructure",
+  "summary": "Homelab and infrastructure workspace: host inventory, per-host configs, shared Compose stacks, network rules, runbooks, backup records and changelog.",
+  "tags": [
+    "homelab",
+    "infra",
+    "infrastructure",
+    "selfhosted",
+    "servers",
+    "network",
+    "sysadmin",
+    "nas",
+    "host",
+    "hosts",
+    "inventory",
+    "runbooks",
+    "lab"
+  ],
+  "dirs": [
+    {
+      "path": "inventory",
+      "summary": "What exists: hosts, IPs, VLANs and hardware (`hosts.yaml`, `network.md`).",
+      "why": "single source of truth for machines and network addressing"
+    },
+    {
+      "path": "hosts",
+      "summary": "One folder per machine by hostname; copy `hosts/_template/` to add a host.",
+      "why": "each machine's configuration is isolated by hostname"
+    },
+    {
+      "path": "hosts/_template",
+      "summary": "Copy this folder to `hosts/<hostname>/` when adding a host.",
+      "listed": false
+    },
+    {
+      "path": "hosts/_template/compose",
+      "summary": "One subfolder per stack with `compose.yaml` and `.env.example`.",
+      "listed": false
+    },
+    {
+      "path": "hosts/_template/etc",
+      "summary": "Tracked system config, mirroring `/etc` paths.",
+      "listed": false
+    },
+    {
+      "path": "hosts/_template/systemd",
+      "summary": "Unit and timer files for this host.",
+      "listed": false
+    },
+    {
+      "path": "stacks",
+      "summary": "Compose stacks used on more than one host.",
+      "why": "shared service definitions are maintained in one place"
+    },
+    {
+      "path": "network",
+      "summary": "Network-wide config: `dns/`, `dhcp/`, `firewall/`, `vpn/` and `proxy/`.",
+      "why": "shared routing, firewall and name resolution stay tracked"
+    },
+    {
+      "path": "network/dns",
+      "summary": "Zone files and local DNS records.",
+      "listed": false
+    },
+    {
+      "path": "network/dhcp",
+      "summary": "DHCP reservations and scopes.",
+      "listed": false
+    },
+    {
+      "path": "network/firewall",
+      "summary": "Firewall rules and port forwards.",
+      "listed": false
+    },
+    {
+      "path": "network/vpn",
+      "summary": "VPN peer definitions without private keys; *.conf files are ignored by Git.",
+      "listed": false
+    },
+    {
+      "path": "network/proxy",
+      "summary": "Reverse-proxy routes and certificate config.",
+      "listed": false
+    },
+    {
+      "path": "secrets",
+      "summary": "Pointers only: secret name and where it is stored.",
+      "why": "documents where credentials live without storing secret values"
+    },
+    {
+      "path": "scripts",
+      "summary": "Deploy, update and health-check scripts.",
+      "why": "operational automation stays separate from host state"
+    },
+    {
+      "path": "runbooks",
+      "summary": "Step-by-step: restore, add host, rotate cert, outage.",
+      "why": "recovery and maintenance procedures are repeatable"
+    },
+    {
+      "path": "backups",
+      "summary": "Backup records, not backup data: `index.md`, `jobs/` and `restore-tests/`.",
+      "why": "tracks backup coverage and restore verification without storing dumps"
+    },
+    {
+      "path": "backups/jobs",
+      "summary": "Backup job definitions without credentials.",
+      "listed": false
+    },
+    {
+      "path": "backups/restore-tests",
+      "summary": "Dated record of each restore drill.",
+      "listed": false
+    },
+    {
+      "path": "monitoring",
+      "summary": "Alert rules, dashboards, uptime checks.",
+      "why": "every service has tracked health and alert checks"
+    },
+    {
+      "path": "docs",
+      "summary": "Diagrams, decisions, hardware manuals.",
+      "why": "architecture context and manuals stay with the repo"
+    },
+    {
+      "path": "changelog",
+      "summary": "Dated entry for every change applied to a live host.",
+      "why": "live changes can be audited and rolled back"
+    },
+    {
+      "path": "tmp",
+      "summary": "Scratch, rendered configs, dry-run output. Ignored by Git and disposable.",
+      "why": "temporary dry-run and rendered output never pollutes tracked configs"
+    }
+  ],
+  "files": [
+    {
+      "path": "FOLDERS.md",
+      "lines": [
+        "# Folder map",
+        "",
+        "What each folder is for. Read this before adding a file.",
+        "",
+        "- `inventory/`: What exists: hosts, IPs, VLANs and hardware (`hosts.yaml`, `network.md`).",
+        "- `hosts/`: One folder per machine by hostname; copy `hosts/_template/` to add a host.",
+        "- `hosts/_template/`: Copy this folder to `hosts/<hostname>/` when adding a host.",
+        "- `hosts/_template/compose/`: One subfolder per stack with `compose.yaml` and `.env.example`.",
+        "- `hosts/_template/etc/`: Tracked system config, mirroring `/etc` paths.",
+        "- `hosts/_template/systemd/`: Unit and timer files for this host.",
+        "- `stacks/`: Compose stacks used on more than one host.",
+        "- `network/`: Network-wide config: `dns/`, `dhcp/`, `firewall/`, `vpn/` and `proxy/`.",
+        "- `network/dns/`: Zone files and local DNS records.",
+        "- `network/dhcp/`: DHCP reservations and scopes.",
+        "- `network/firewall/`: Firewall rules and port forwards.",
+        "- `network/vpn/`: VPN peer definitions without private keys; *.conf files are ignored by Git.",
+        "- `network/proxy/`: Reverse-proxy routes and certificate config.",
+        "- `secrets/`: Pointers only: secret name and where it is stored.",
+        "- `scripts/`: Deploy, update and health-check scripts.",
+        "- `runbooks/`: Step-by-step: restore, add host, rotate cert, outage.",
+        "- `backups/`: Backup records, not backup data: `index.md`, `jobs/` and `restore-tests/`.",
+        "- `backups/jobs/`: Backup job definitions without credentials.",
+        "- `backups/restore-tests/`: Dated record of each restore drill.",
+        "- `monitoring/`: Alert rules, dashboards, uptime checks.",
+        "- `docs/`: Diagrams, decisions, hardware manuals.",
+        "- `changelog/`: Dated entry for every change applied to a live host.",
+        "- `tmp/`: Scratch, rendered configs, dry-run output. Ignored by Git and disposable."
+      ]
+    },
+    {
+      "path": "inventory/hosts.yaml",
+      "lines": [
+        "# Host inventory: record hostname, role, OS, IP, VLAN and hardware summary.",
+        "hosts: []"
+      ]
+    },
+    {
+      "path": "inventory/network.md",
+      "lines": [
+        "# Network inventory",
+        "",
+        "Record VLANs, subnets, gateways and static IP ranges.",
+        "",
+        "| VLAN | Subnet | Gateway | Purpose |",
+        "|---|---|---|---|"
+      ]
+    },
+    {
+      "path": "hosts/_template/host.yaml",
+      "lines": [
+        "# Host definition: role, OS, IP, hardware.",
+        "hostname: \"\"",
+        "role: \"\"",
+        "os: \"\"",
+        "ip: \"\"",
+        "hardware: \"\""
+      ]
+    },
+    {
+      "path": "hosts/_template/notes.md",
+      "lines": [
+        "# Host notes",
+        "",
+        "Record quirks and history of this machine."
+      ]
+    },
+    {
+      "path": "hosts/_template/compose/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "hosts/_template/etc/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "hosts/_template/systemd/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "stacks/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "network/dns/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "network/dhcp/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "network/firewall/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "network/vpn/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "network/proxy/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "secrets/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "scripts/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "runbooks/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "backups/index.md",
+      "lines": [
+        "# Backup index",
+        "",
+        "Record what is backed up, where to, schedule, retention and last restore test.",
+        "",
+        "| Service or path | Destination | Schedule | Retention | Last test |",
+        "|---|---|---|---|---|"
+      ]
+    },
+    {
+      "path": "backups/jobs/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "backups/restore-tests/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "monitoring/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "docs/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "changelog/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "tmp/.gitkeep",
+      "lines": []
+    }
+  ],
+  "agents": {
+    "purpose": [
+      "`{{project}}` is a homelab and infrastructure workspace. Add a host by copying `hosts/_template/` to `hosts/<hostname>/`."
+    ],
+    "rules": [
+      "- Each folder's purpose is in `FOLDERS.md`; read it before adding a file.",
+      "- Never write a secret value in any file: no passwords, tokens, private keys or `.env` contents.",
+      "- VPN configs (`network/vpn/*.conf`) hold private keys and are ignored by Git; commit a `.conf.example` with the keys removed.",
+      "- `.env.example` lists variable names only; `secrets/` records where the real value is kept. A stack used on one host goes in `hosts/<hostname>/compose/<stack>/`; a stack used on more than one host goes in `stacks/<stack>/`. Each gets a `compose.yaml` and a `.env.example`.",
+      "- Change the file in this repo first, then deploy it; never edit a live host directly.",
+      "- Running any command that changes a live host needs approval; read-only commands do not.",
+      "- Destroying data needs explicit approval every time: removing volumes, wiping disks, dropping databases, pruning backups.",
+      "- Every applied change gets an entry in `changelog/`: date, host, what changed, how to undo it.",
+      "- Pin image tags to a version; never use `latest`.",
+      "- A new service is not done until it has a line in `backups/index.md` and a check in `monitoring/`.",
+      "- Changes to `network/firewall/`, `network/vpn/` or anything that opens a port need approval.",
+      "- If a step fails partway, stop and report the current state; do not improvise a fix.",
+      "- Backups, disk images and volume data never go in git.",
+      "- Run `git lfs install` once before the first commit."
+    ]
+  },
+  "gitignore": [
+    "tmp/*",
+    "!tmp/.gitkeep",
+    ".env",
+    ".env.*",
+    "!.env.example",
+    "*.key",
+    "*.pem",
+    "*.p12",
+    "*.pfx",
+    "*.kdbx",
+    "*.iso",
+    "*.img",
+    "*.qcow2",
+    ".DS_Store",
+    "Thumbs.db",
+    "id_rsa",
+    "id_ed25519",
+    "id_ecdsa",
+    "id_dsa",
+    "ssh_host_*_key",
+    ".envrc",
+    "*.sql",
+    "*.sql.gz",
+    "*.dump",
+    "network/vpn/*.conf"
+  ],
+  "gitattributes": [
+    "docs/**/*.pdf filter=lfs diff=lfs merge=lfs -text",
+    "docs/**/*.png filter=lfs diff=lfs merge=lfs -text"
+  ]
+}

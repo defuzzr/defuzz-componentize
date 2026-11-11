@@ -1,0 +1,25 @@
+manifest_version: 2
+name: defuzz-componentize
+version: 0.2.0
+description: Receipt-gated componentization commands with bundled guidance and a settings page
+kind: standalone
+author: defuzzr
+license: MIT
+requires_hermes: ">=0.23.0"
+provides_tools: []
+provides_hooks: []
+python_dependencies: []
+platforms: [linux]
+# Python 3.13 or newer. Hermes's plugin.yaml has no Python-version field, so
+# register() refuses older interpreters with a one-line message.
+config_schema:
+  library_root:
+    type: str
+    default: ""
+    label: Component library folder
+    description: Absolute path to the dedicated folder holding your reusable Python components, COMPONENTS.md, scripts/, specs/, and AGENTS.md. Set by `hermes componentize init <folder>`; leave blank if you only use project kits.
+  timeout:
+    type: float
+    default: 900
+    label: Outer command timeout
+    description: Maximum wall-clock time in seconds for one subprocess command (survey, begin, attest, check, finish, status, or rebaseline). Must be a finite number greater than 0 (default 900; init, library, and kit run in-process).

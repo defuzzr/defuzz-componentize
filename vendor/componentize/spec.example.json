@@ -1,0 +1,29 @@
+{
+  "schema_version": 2,
+  "name": "word-count",
+  "kind": "component",
+  "attest": {
+    "kind_reason": "word counting is needed by the report runner and by a later export check",
+    "reuse": "components/COMPONENTS.md: no existing entry counts words in text files -> new component"
+  },
+  "files": [
+    {"path": "../components/word_count.py", "role": "component", "purpose": "Count words per line in a text file and return a result dict."},
+    {"path": "../scripts/word_count.py", "role": "runner"}
+  ],
+  "original": "../scripts/word_count.prev.py",
+  "golden": {
+    "argv": ["/usr/bin/python3", "scripts/word_count.py", "components/tests/fixtures/sample.txt"],
+    "cwd": "..",
+    "env": {"PATH": "/usr/bin:/bin", "LC_ALL": "C"},
+    "compare": ["stdout", "rc"],
+    "isolated": true
+  },
+  "tests": {
+    "argv": ["/usr/bin/python3", "-m", "pytest", "components/tests/test_word_count.py", "-q", "-p", "no:cacheprovider"],
+    "cwd": ".."
+  },
+  "inputs": [
+    "../components/tests/test_word_count.py",
+    "../components/tests/fixtures/sample.txt"
+  ]
+}

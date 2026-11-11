@@ -1,0 +1,1533 @@
+{
+  "schema_version": 1,
+  "id": "studio-3d",
+  "version": 1,
+  "name": "3D design studio: Blender, Houdini, UE5, Godot & web",
+  "summary": "Multi-tool 3D design studio workspace: per-asset sources/exports, Blender and Houdini DCC trees, UE5, Godot and Three.js targets, shots and deliveries; not a single-engine game project or an Unreal asset pipeline.",
+  "tags": [
+    "3d",
+    "studio",
+    "dcc",
+    "blender",
+    "houdini",
+    "unreal",
+    "ue5",
+    "godot",
+    "three",
+    "threejs",
+    "webgl",
+    "web",
+    "assets",
+    "shots",
+    "lfs"
+  ],
+  "dirs": [
+    {
+      "path": "docs",
+      "summary": "Conventions, pipeline flows and architecture decisions.",
+      "why": "project standards and decisions survive between sessions"
+    },
+    {
+      "path": "docs/conventions",
+      "summary": "Naming, units/axes, budgets and color rules.",
+      "listed": false
+    },
+    {
+      "path": "docs/pipeline",
+      "summary": "DCC -> export -> engine/web flow per target.",
+      "listed": false
+    },
+    {
+      "path": "docs/adr",
+      "summary": "Architecture Decision Records.",
+      "listed": false
+    },
+    {
+      "path": "tools",
+      "summary": "Validation, batch export, conversion and CI scripts.",
+      "why": "pipeline scripts stay separate from art and engine trees"
+    },
+    {
+      "path": "tools/validate",
+      "summary": "Name, scale, UV, manifest checks.",
+      "listed": false
+    },
+    {
+      "path": "tools/export",
+      "summary": "Headless Blender / hython batch exporters.",
+      "listed": false
+    },
+    {
+      "path": "tools/convert",
+      "summary": "Conversion scripts (gltf-transform, toktx, USD) writing to `web/public/`.",
+      "listed": false
+    },
+    {
+      "path": "tools/ci",
+      "summary": "Continuous integration checks and runners.",
+      "listed": false
+    },
+    {
+      "path": "refs",
+      "summary": "Read-only input: concept art, moodboards, photos and scans.",
+      "why": "reference material is never overwritten or confused with work"
+    },
+    {
+      "path": "refs/concept",
+      "summary": "Concept art and design drawings.",
+      "listed": false
+    },
+    {
+      "path": "refs/moodboards",
+      "summary": "Style and lighting moodboards.",
+      "listed": false
+    },
+    {
+      "path": "refs/photo",
+      "summary": "Real-world reference photography.",
+      "listed": false
+    },
+    {
+      "path": "refs/scans",
+      "summary": "Photogrammetry and surface scan inputs.",
+      "listed": false
+    },
+    {
+      "path": "library",
+      "summary": "Shared, DCC-neutral resources: HDRIs, materials, textures, kitbash, LUTs, audio.",
+      "why": "reusable studio resources stay neutral across tools"
+    },
+    {
+      "path": "library/hdri",
+      "summary": "Environment HDRIs for lighting and lookdev.",
+      "listed": false
+    },
+    {
+      "path": "library/materials",
+      "summary": "Shared materials (.sbsar, MaterialX).",
+      "listed": false
+    },
+    {
+      "path": "library/textures",
+      "summary": "Shared texture maps across surfaces, decals and alphas.",
+      "listed": false
+    },
+    {
+      "path": "library/textures/surfaces",
+      "summary": "Tileable surface texture sets.",
+      "listed": false
+    },
+    {
+      "path": "library/textures/decals",
+      "summary": "Decal textures and trim sheets.",
+      "listed": false
+    },
+    {
+      "path": "library/textures/alphas",
+      "summary": "Brush alphas, stencils and masks.",
+      "listed": false
+    },
+    {
+      "path": "library/kitbash",
+      "summary": "Reusable kitbash mesh parts.",
+      "listed": false
+    },
+    {
+      "path": "library/luts",
+      "summary": "Color lookup tables.",
+      "listed": false
+    },
+    {
+      "path": "library/fonts",
+      "summary": "Shared font files.",
+      "listed": false
+    },
+    {
+      "path": "library/audio",
+      "summary": "Shared sound effects and audio stems.",
+      "listed": false
+    },
+    {
+      "path": "assets",
+      "summary": "One folder per asset in the deepest category (`assets/.../<asset_id>/`).",
+      "why": "every asset has one canonical home for sources and exports"
+    },
+    {
+      "path": "assets/_template",
+      "summary": "Per-asset template; copy to the deepest `assets/<category>/.../<asset_id>/`.",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/ref",
+      "summary": "Asset-specific reference images and notes.",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/source",
+      "summary": "Editable tool sources for this asset.",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/source/blender",
+      "summary": "Blender source files (.blend).",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/source/houdini",
+      "summary": "Houdini scenes (.hip) and asset-local HDAs.",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/source/sculpt",
+      "summary": "Sculpt source files (.ztl).",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/source/substance",
+      "summary": "Substance Painter and Designer sources (.spp, .sbs).",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/textures",
+      "summary": "Source and baked texture maps for this asset.",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/textures/source",
+      "summary": "Full-resolution texture sources (`.exr`, `.psd`, `.tif`).",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/textures/baked",
+      "summary": "Baked mesh maps and engine-ready textures (`_D`, `_N`, `_ORM`).",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/export",
+      "summary": "Final published exports from DCC sources for engine, web or tool handoff.",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/export/fbx",
+      "summary": "Published FBX exports targeting Unreal Engine 5.",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/export/glb",
+      "summary": "Source `.glb` exports imported by Godot and compressed by `tools/convert/`.",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/export/usd",
+      "summary": "Published USD files (`.usdc`, `.usda`, `.usdz`) for scene/tool handoff.",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/export/abc",
+      "summary": "Final published Alembic files (`.abc`) for engine or tool handoff.",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/export/vdb",
+      "summary": "Final published OpenVDB volumes (`.vdb`) for engine or tool handoff.",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/lods",
+      "summary": "Level-of-detail meshes.",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/collision",
+      "summary": "Custom collision meshes.",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/rig",
+      "summary": "Rigging setups, skin weights and control shapes.",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/anim",
+      "summary": "Asset-specific animations and motion clips.",
+      "listed": false
+    },
+    {
+      "path": "assets/_template/preview",
+      "summary": "Asset turntables and thumbnail renders.",
+      "listed": false
+    },
+    {
+      "path": "assets/characters",
+      "summary": "Humanoid and main character assets.",
+      "listed": false
+    },
+    {
+      "path": "assets/creatures",
+      "summary": "Non-humanoid creature assets.",
+      "listed": false
+    },
+    {
+      "path": "assets/props",
+      "summary": "Standalone prop assets.",
+      "listed": false
+    },
+    {
+      "path": "assets/weapons",
+      "summary": "Weapon and attachment assets.",
+      "listed": false
+    },
+    {
+      "path": "assets/vehicles",
+      "summary": "Vehicle and mount assets.",
+      "listed": false
+    },
+    {
+      "path": "assets/environments",
+      "summary": "Environment asset sets: modular kits, foliage and terrain.",
+      "listed": false
+    },
+    {
+      "path": "assets/environments/modular",
+      "summary": "Modular architectural and environment pieces.",
+      "listed": false
+    },
+    {
+      "path": "assets/environments/foliage",
+      "summary": "Trees, plants, rocks and scatter assets.",
+      "listed": false
+    },
+    {
+      "path": "assets/environments/terrain",
+      "summary": "Heightfields, landscape layers and cliff assemblies.",
+      "listed": false
+    },
+    {
+      "path": "assets/fx",
+      "summary": "Visual effect source assets.",
+      "listed": false
+    },
+    {
+      "path": "dcc",
+      "summary": "Shared Blender and Houdini tooling, HDAs, lookdev scenes and templates.",
+      "why": "studio-wide DCC configs stay separate from per-asset sources"
+    },
+    {
+      "path": "dcc/blender",
+      "summary": "Studio Blender add-ons, scripts, asset library and lookdev scenes.",
+      "listed": false
+    },
+    {
+      "path": "dcc/blender/addons",
+      "summary": "Blender add-ons used by this studio.",
+      "listed": false
+    },
+    {
+      "path": "dcc/blender/scripts",
+      "summary": "Blender Python scripts and utilities.",
+      "listed": false
+    },
+    {
+      "path": "dcc/blender/startup",
+      "summary": "Blender startup files and hooks.",
+      "listed": false
+    },
+    {
+      "path": "dcc/blender/presets",
+      "summary": "Blender operator and export presets.",
+      "listed": false
+    },
+    {
+      "path": "dcc/blender/asset_library",
+      "summary": "Node groups, materials and marked Blender assets.",
+      "listed": false
+    },
+    {
+      "path": "dcc/blender/scenes",
+      "summary": "Lookdev, lighting rigs and turntable setups.",
+      "listed": false
+    },
+    {
+      "path": "dcc/blender/templates",
+      "summary": "Blender application and scene templates.",
+      "listed": false
+    },
+    {
+      "path": "dcc/houdini",
+      "summary": "Studio Houdini packages, HDAs, VEX, scripts and TOPs workflows.",
+      "listed": false
+    },
+    {
+      "path": "dcc/houdini/packages",
+      "summary": "Houdini package definitions (.json).",
+      "listed": false
+    },
+    {
+      "path": "dcc/houdini/otls",
+      "summary": "Studio-wide Houdini Digital Assets (HDAs).",
+      "listed": false
+    },
+    {
+      "path": "dcc/houdini/scripts",
+      "summary": "Houdini scene and event scripts.",
+      "listed": false
+    },
+    {
+      "path": "dcc/houdini/python3.11libs",
+      "summary": "Shared Python modules for Houdini.",
+      "listed": false
+    },
+    {
+      "path": "dcc/houdini/toolbar",
+      "summary": "Custom Houdini shelf tools (.shelf).",
+      "listed": false
+    },
+    {
+      "path": "dcc/houdini/presets",
+      "summary": "Houdini node and parameter presets.",
+      "listed": false
+    },
+    {
+      "path": "dcc/houdini/vex",
+      "summary": "Shared VEX headers and snippets.",
+      "listed": false
+    },
+    {
+      "path": "dcc/houdini/hip",
+      "summary": "Shared Houdini setups and template scenes.",
+      "listed": false
+    },
+    {
+      "path": "dcc/houdini/pdg",
+      "summary": "TOPs / PDG batch graph workflows.",
+      "listed": false
+    },
+    {
+      "path": "engines",
+      "summary": "Unreal Engine 5 (`engines/ue5/Studio/`) and Godot (`engines/godot/studio/`).",
+      "why": "each target engine owns its imported content tree"
+    },
+    {
+      "path": "engines/ue5",
+      "summary": "Unreal Engine 5 workspace and scoped agent rules.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio",
+      "summary": "Unreal Engine 5 project root (`Studio.uproject` created by Unreal Editor).",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Config",
+      "summary": "Unreal Engine configuration (.ini) files.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Source",
+      "summary": "Unreal C++ modules.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Source/Studio",
+      "summary": "Primary runtime C++ module.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Source/StudioEditor",
+      "summary": "Editor-only C++ module.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Plugins",
+      "summary": "Project-scoped Unreal plugins.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content",
+      "summary": "Unreal `/Game/` tree: imported asset exports and Unreal-authored assets.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content/_Dev",
+      "summary": "Unreviewed Unreal assets and per-agent engine sandboxes before promotion.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Characters",
+      "summary": "Imported character meshes, rigs and materials.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Props",
+      "summary": "Imported prop static meshes and actors.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Environments",
+      "summary": "Environment assemblies and modular kits.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Materials",
+      "summary": "Unreal master materials, instances and functions.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Materials/Master",
+      "summary": "Master material graphs (`M_`).",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Materials/Instances",
+      "summary": "Parameterized material instances (`MI_`).",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Materials/Functions",
+      "summary": "Reusable material functions (`MF_`).",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Textures",
+      "summary": "Imported texture assets (`T_`).",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content/VFX",
+      "summary": "Niagara visual effects systems and emitters.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Animations",
+      "summary": "Imported animations, montages and blend spaces.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Blueprints",
+      "summary": "Gameplay Blueprints and actor classes.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content/UI",
+      "summary": "UMG widgets and interface assets.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Audio",
+      "summary": "Sound waves, cues and MetaSounds.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Cinematics",
+      "summary": "Level Sequences and camera cuts.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Data",
+      "summary": "DataAssets and DataTables.",
+      "listed": false
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Maps",
+      "summary": "Unreal levels (`.umap`).",
+      "listed": false
+    },
+    {
+      "path": "engines/godot",
+      "summary": "Godot workspace and scoped agent rules.",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio",
+      "summary": "Godot project root (`project.godot` created by Godot Editor).",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio/addons",
+      "summary": "Godot editor plugins and add-ons.",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio/assets",
+      "summary": "Imported Godot models/textures/audio/fonts and Godot materials/shaders.",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio/assets/models",
+      "summary": "Godot `.glb` models imported from an asset's `export/glb/` plus `.import`.",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio/assets/textures",
+      "summary": "Textures imported from an asset's `textures/baked/` or `library/textures/`.",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio/assets/materials",
+      "summary": "Godot material resources (`.tres`).",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio/assets/shaders",
+      "summary": "Godot shaders (`.gdshader`).",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio/assets/audio",
+      "summary": "Imported audio streams.",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio/assets/fonts",
+      "summary": "Imported font resources.",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio/scenes",
+      "summary": "Godot scene trees (`.tscn`).",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio/scenes/levels",
+      "summary": "Playable level scenes.",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio/scenes/actors",
+      "summary": "Character and creature scenes.",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio/scenes/props",
+      "summary": "Interactive and static prop scenes.",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio/scenes/ui",
+      "summary": "Control and HUD scenes.",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio/scripts",
+      "summary": "GDScript code (`.gd`).",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio/autoload",
+      "summary": "Singleton autoload scripts and scenes.",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio/resources",
+      "summary": "Custom Godot Resource files (`.tres`).",
+      "listed": false
+    },
+    {
+      "path": "engines/godot/studio/tests",
+      "summary": "Godot unit and scene tests.",
+      "listed": false
+    },
+    {
+      "path": "web",
+      "summary": "Three.js / WebGL / WebGPU front end (`public/` assets and `src/` code).",
+      "why": "web viewer and compressed GLB/KTX2 delivery stay isolated"
+    },
+    {
+      "path": "web/public",
+      "summary": "Static web assets served directly.",
+      "listed": false
+    },
+    {
+      "path": "web/public/models",
+      "summary": "Web-ready compressed `.glb` models (Draco / meshopt) from `tools/convert/`.",
+      "listed": false
+    },
+    {
+      "path": "web/public/textures",
+      "summary": "Web-ready `.ktx2` compressed textures from `tools/convert/`.",
+      "listed": false
+    },
+    {
+      "path": "web/public/hdri",
+      "summary": "Environment maps for web scenes.",
+      "listed": false
+    },
+    {
+      "path": "web/public/decoders",
+      "summary": "WASM decoders (Draco, Basis).",
+      "listed": false
+    },
+    {
+      "path": "web/public/fonts",
+      "summary": "Web fonts.",
+      "listed": false
+    },
+    {
+      "path": "web/src",
+      "summary": "TypeScript / Three.js application source.",
+      "listed": false
+    },
+    {
+      "path": "web/src/scenes",
+      "summary": "Three.js scene graphs and setups.",
+      "listed": false
+    },
+    {
+      "path": "web/src/components",
+      "summary": "Reusable 3D and UI components.",
+      "listed": false
+    },
+    {
+      "path": "web/src/materials",
+      "summary": "Custom Three.js materials.",
+      "listed": false
+    },
+    {
+      "path": "web/src/shaders",
+      "summary": "GLSL and WGSL shader sources (`.glsl`, `.wgsl`).",
+      "listed": false
+    },
+    {
+      "path": "web/src/loaders",
+      "summary": "Asset loader wrappers (GLTFLoader, KTX2Loader).",
+      "listed": false
+    },
+    {
+      "path": "web/src/postfx",
+      "summary": "Post-processing passes and effects.",
+      "listed": false
+    },
+    {
+      "path": "web/src/ui",
+      "summary": "DOM/HTML overlay and controls.",
+      "listed": false
+    },
+    {
+      "path": "web/src/lib",
+      "summary": "Shared math, state and utility helpers.",
+      "listed": false
+    },
+    {
+      "path": "web/tests",
+      "summary": "Web front-end tests.",
+      "listed": false
+    },
+    {
+      "path": "shots",
+      "summary": "Cinematics and shot production (`shots/<seq>/<shot>/` from `shots/_template/`).",
+      "why": "shot work stays separate from reusable asset definitions"
+    },
+    {
+      "path": "shots/_template",
+      "summary": "Per-shot template; copy to `shots/<seq>/<shot>/`.",
+      "listed": false
+    },
+    {
+      "path": "shots/_template/layout",
+      "summary": "Camera staging, rough blocking and set dress.",
+      "listed": false
+    },
+    {
+      "path": "shots/_template/anim",
+      "summary": "Shot character and camera animation.",
+      "listed": false
+    },
+    {
+      "path": "shots/_template/fx",
+      "summary": "Shot FX scene files and simulation setups (working caches go to `cache/`).",
+      "listed": false
+    },
+    {
+      "path": "shots/_template/lighting",
+      "summary": "Shot lighting and render layer setups.",
+      "listed": false
+    },
+    {
+      "path": "shots/_template/comp",
+      "summary": "Compositing scripts and slapcomps.",
+      "listed": false
+    },
+    {
+      "path": "cache",
+      "summary": "Simulation and geometry caches only (sims, bgeo, vdb, flipbooks). Ignored.",
+      "why": "heavy rebuildable caches never bloat the repository"
+    },
+    {
+      "path": "renders",
+      "summary": "Shot/sequence renders and playblasts (EXR sequences). Ignored by Git.",
+      "why": "work-in-progress renders are rebuildable and stay out of Git"
+    },
+    {
+      "path": "deliveries",
+      "summary": "Versioned client and build drops. Never edit a delivered folder.",
+      "why": "shipped drops stay reproducible and immutable"
+    },
+    {
+      "path": ".agents",
+      "summary": "Per-agent scratch lanes (`.agents/lanes/<agent>/`), handoffs and logs.",
+      "why": "agents coordinate without writing into each other's folders"
+    },
+    {
+      "path": ".agents/lanes",
+      "summary": "One subfolder per agent with disjoint write scope.",
+      "listed": false
+    },
+    {
+      "path": ".agents/handoff",
+      "summary": "Asset status and handoff notes between agents.",
+      "listed": false
+    },
+    {
+      "path": ".agents/logs",
+      "summary": "Agent execution logs. Ignored by Git.",
+      "listed": false
+    }
+  ],
+  "files": [
+    {
+      "path": "TOOLS.lock",
+      "lines": [
+        "# Pinned studio tool versions. Record exact versions here once verified.",
+        "blender=REPLACE-with-exact-version",
+        "houdini=REPLACE-with-exact-version",
+        "ue5=REPLACE-with-exact-version",
+        "godot=REPLACE-with-exact-version",
+        "node=REPLACE-with-exact-version"
+      ]
+    },
+    {
+      "path": "docs/conventions/naming.md",
+      "lines": [
+        "# Naming conventions",
+        "",
+        "| Affix | Kind | Meaning |",
+        "|---|---|---|",
+        "| `SM_` | prefix | static mesh |",
+        "| `SK_` | prefix | skeletal mesh |",
+        "| `T_` | prefix | texture |",
+        "| `M_` | prefix | material |",
+        "| `MI_` | prefix | material instance |",
+        "| `MF_` | prefix | material function |",
+        "| `_D` | suffix | base colour/diffuse |",
+        "| `_N` | suffix | normal |",
+        "| `_ORM` | suffix | occlusion-roughness-metallic |"
+      ]
+    },
+    {
+      "path": "docs/conventions/units-axes.md",
+      "lines": [
+        "# Units and axes",
+        "",
+        "Record the project's chosen unit scale and coordinate hand-off rules below.",
+        "",
+        "| Tool | Default unit | Default up axis |",
+        "|---|---|---|",
+        "| Blender | metres | Z-up |",
+        "| Houdini | metres | Y-up |",
+        "| Unreal Engine 5 | centimetres | Z-up |",
+        "| Godot | metres | Y-up |",
+        "| three.js | unitless/metres | Y-up |"
+      ]
+    },
+    {
+      "path": "docs/conventions/budgets.md",
+      "lines": [
+        "# Performance budgets",
+        "",
+        "Fill in triangle, texel density and draw-call budgets per target platform before production.",
+        "",
+        "| Category | Target | Max tris | Texel density | Max draw calls | Notes |",
+        "|---|---|---|---|---|---|"
+      ]
+    },
+    {
+      "path": "docs/conventions/color.md",
+      "lines": [
+        "# Color management",
+        "",
+        "Fill in the working color space, view transform and texture color-space rules for this project.",
+        "",
+        "| Stage / map type | Color space | Transfer / encoding | Notes |",
+        "|---|---|---|---|"
+      ]
+    },
+    {
+      "path": "assets/_template/asset.yaml",
+      "lines": [
+        "# Copy assets/_template/ to the deepest assets/<category>/.../<asset_id>/ and replace every REPLACE value.",
+        "owner: REPLACE",
+        "status: REPLACE  # studio-defined status word",
+        "version: REPLACE",
+        "targets:  # allowed values: ue5, godot, web",
+        "  - REPLACE"
+      ]
+    },
+    {
+      "path": "dcc/blender/AGENTS.md",
+      "lines": [
+        "# Blender (`dcc/blender/`)",
+        "",
+        "Shared studio Blender tooling, assets and lookdev setups.",
+        "",
+        "## Folders",
+        "- `addons/`: Studio Blender add-ons.",
+        "- `scripts/`: Python scripts and batch utilities.",
+        "- `startup/`: Startup hooks and default configuration.",
+        "- `presets/`: Operator and exporter presets.",
+        "- `asset_library/`: Shared node groups, materials and marked assets.",
+        "- `scenes/`: Lookdev, lighting rigs and turntable setups.",
+        "- `templates/`: Application and scene templates.",
+        "",
+        "## Rules",
+        "- Keep only studio-wide Blender tools and reusable setups here; per-asset `.blend` files belong in that asset's `source/blender/` folder (`*.blend[0-9]*` backups are ignored by Git).",
+        "- Blender uses metres and Z-up (`docs/conventions/units-axes.md`); export Unreal meshes/animations to the asset's `export/fbx/` and Godot/web source meshes to `export/glb/`.",
+        "- Render asset turntables and thumbnails into that asset's `preview/` folder; render shot sequences and playblasts to root `renders/`."
+      ]
+    },
+    {
+      "path": "dcc/houdini/AGENTS.md",
+      "lines": [
+        "# Houdini (`dcc/houdini/`)",
+        "",
+        "Shared studio Houdini packages, HDAs, VEX headers, scripts and TOPs workflows.",
+        "",
+        "## Folders",
+        "- `packages/`: Houdini `.json` package definitions.",
+        "- `otls/`: Studio-wide Houdini Digital Assets (HDAs).",
+        "- `scripts/`: Scene and event scripts.",
+        "- `python3.11libs/`: Shared Python modules loaded by Houdini.",
+        "- `toolbar/`: Custom shelf definitions (`.shelf`).",
+        "- `presets/`: Node and parameter presets.",
+        "- `vex/`: Shared VEX headers and snippets.",
+        "- `hip/`: Reusable template scenes and studio setups.",
+        "- `pdg/`: TOPs / PDG batch graph workflows.",
+        "",
+        "## Rules",
+        "- Put studio-wide HDAs in `otls/` and shared template scenes in `hip/`; asset-specific `.hip` scenes and asset-local HDAs belong in that asset's `source/houdini/`, and shot FX setups in `shots/<seq>/<shot>/fx/`.",
+        "- Write all working simulation and geometry caches (`.bgeo.sc`, `.vdb`, sims, flipbooks) to root `cache/` only.",
+        "- Houdini uses metres and Y-up (`docs/conventions/units-axes.md`); publish final meshes, animations and volumes for handoff to the asset's `export/` (`fbx/`, `glb/`, `usd/`, `abc/`, `vdb/`)."
+      ]
+    },
+    {
+      "path": "engines/ue5/AGENTS.md",
+      "lines": [
+        "# Unreal Engine 5 (`engines/ue5/`)",
+        "",
+        "Unreal Engine 5 workspace (`Studio/`, centimetres, Z-up). Initialize `Studio/Studio.uproject` from Unreal Editor.",
+        "",
+        "## Folders",
+        "- `Studio/Config/`: Engine and project `.ini` configuration.",
+        "- `Studio/Source/`: C++ modules (`Studio/` runtime, `StudioEditor/` editor).",
+        "- `Studio/Plugins/`: Project-scoped Unreal plugins.",
+        "- `Studio/Content/`: `/Game/` tree (`_Dev/`, `Characters/`, `Props/`, `Environments/`, `Materials/`, `Textures/`, `VFX/`, `Animations/`, `Blueprints/`, `UI/`, `Audio/`, `Cinematics/`, `Data/`, `Maps/`).",
+        "",
+        "## Rules",
+        "- Populate `Studio/Content/` by importing meshes/animations from an asset's `export/fbx/` (plus `export/abc/`, `export/vdb/` or `export/usd/` when needed) and textures from `textures/baked/` or `library/textures/`, while authoring Unreal-native assets (Blueprints, `.umap` maps, `M_`/`MI_`/`MF_` materials, Niagara, Level Sequences, UMG, DataAssets) in Unreal Editor; never put `.blend`, `.hip`, `.ztl` or `.spp` files here.",
+        "- Put unreviewed Unreal assets in `Studio/Content/_Dev/` before promoting them to shared `Content/` folders (scratch files outside the engines belong in `.agents/lanes/<agent>/`).",
+        "- Follow `docs/conventions/naming.md` for Unreal asset prefixes and texture suffixes, and never hand-edit `.uasset` or `.umap` binaries.",
+        "- `Binaries/`, `Intermediate/`, `Saved/` and `DerivedDataCache/` (including under `Plugins/*/`) are generated by Unreal and ignored by Git."
+      ]
+    },
+    {
+      "path": "engines/godot/AGENTS.md",
+      "lines": [
+        "# Godot (`engines/godot/`)",
+        "",
+        "Godot workspace (`studio/`, metres, Y-up). Initialize `studio/project.godot` and `studio/export_presets.cfg` from the Godot editor.",
+        "",
+        "## Folders",
+        "- `studio/addons/`: Editor plugins and add-ons.",
+        "- `studio/assets/`: Imported assets and Godot shaders/materials (`models/`, `textures/`, `materials/`, `shaders/`, `audio/`, `fonts/`).",
+        "- `studio/scenes/`: Scene trees (`.tscn`) under `levels/`, `actors/`, `props/` and `ui/`.",
+        "- `studio/scripts/`: GDScript files (`.gd`).",
+        "- `studio/autoload/`: Singleton autoload scripts and scenes.",
+        "- `studio/resources/`: Custom `.tres` resources.",
+        "- `studio/tests/`: Unit and scene tests.",
+        "",
+        "## Rules",
+        "- Import 3D models into `studio/assets/models/` from the asset's `export/glb/` and textures into `studio/assets/textures/` from the asset's `textures/baked/` or `library/textures/`; author Godot-native scenes (`.tscn`), scripts (`.gd`), resources (`.tres`) and shaders (`.gdshader`) in Godot, and never put `.blend`, `.hip`, `.ztl` or `.spp` files here.",
+        "- Let Godot generate and update `.import` sidecars (committed) and `.godot/` cache data (ignored by Git); never hand-write `.import` files."
+      ]
+    },
+    {
+      "path": "web/AGENTS.md",
+      "lines": [
+        "# Web / Three.js (`web/`)",
+        "",
+        "Three.js front end (metres, Y-up). Create `package.json` with the package manager or project scaffolder; config files such as `vite.config.ts` and `tsconfig.json` are ordinary source files in `web/`.",
+        "",
+        "## Folders",
+        "- `public/`: Static files served directly (`models/`, `textures/`, `hdri/`, `decoders/`, `fonts/`).",
+        "- `src/`: Application source (`scenes/`, `components/`, `materials/`, `shaders/`, `loaders/`, `postfx/`, `ui/`, `lib/`).",
+        "- `tests/`: Web front-end tests.",
+        "",
+        "## Rules",
+        "- Treat the asset's `export/glb/` as the source GLB and `textures/baked/` as the source textures; run the conversion scripts in `tools/convert/` to write compressed Draco/meshopt `.glb` files to `public/models/` (the one home for web-ready GLBs) and `.ktx2` files to `public/textures/`.",
+        "- Never place DCC sources (`.blend`, `.hip`, `.ztl`, `.spp`) or uncompressed authoring textures (`.exr`, `.psd`, `.tif`) under `web/`.",
+        "- `dist/` and `node_modules/` are generated build/install output and are ignored by Git."
+      ]
+    },
+    {
+      "path": "docs/pipeline/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "docs/adr/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "tools/validate/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "tools/export/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "tools/convert/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "tools/ci/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "refs/concept/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "refs/moodboards/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "refs/photo/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "refs/scans/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "library/hdri/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "library/materials/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "library/textures/surfaces/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "library/textures/decals/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "library/textures/alphas/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "library/kitbash/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "library/luts/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "library/fonts/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "library/audio/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/_template/ref/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/_template/source/blender/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/_template/source/houdini/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/_template/source/sculpt/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/_template/source/substance/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/_template/textures/source/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/_template/textures/baked/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/_template/export/fbx/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/_template/export/glb/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/_template/export/usd/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/_template/export/abc/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/_template/export/vdb/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/_template/lods/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/_template/collision/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/_template/rig/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/_template/anim/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/_template/preview/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/characters/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/creatures/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/props/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/weapons/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/vehicles/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/environments/modular/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/environments/foliage/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/environments/terrain/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/fx/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "dcc/blender/addons/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "dcc/blender/scripts/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "dcc/blender/startup/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "dcc/blender/presets/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "dcc/blender/asset_library/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "dcc/blender/scenes/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "dcc/blender/templates/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "dcc/houdini/packages/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "dcc/houdini/otls/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "dcc/houdini/scripts/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "dcc/houdini/python3.11libs/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "dcc/houdini/toolbar/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "dcc/houdini/presets/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "dcc/houdini/vex/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "dcc/houdini/hip/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "dcc/houdini/pdg/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Config/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Source/Studio/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Source/StudioEditor/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Plugins/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Content/_Dev/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Characters/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Props/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Environments/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Materials/Master/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Materials/Instances/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Materials/Functions/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Textures/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Content/VFX/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Animations/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Blueprints/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Content/UI/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Audio/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Cinematics/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Data/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/ue5/Studio/Content/Maps/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/godot/studio/addons/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/godot/studio/assets/models/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/godot/studio/assets/textures/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/godot/studio/assets/materials/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/godot/studio/assets/shaders/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/godot/studio/assets/audio/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/godot/studio/assets/fonts/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/godot/studio/scenes/levels/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/godot/studio/scenes/actors/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/godot/studio/scenes/props/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/godot/studio/scenes/ui/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/godot/studio/scripts/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/godot/studio/autoload/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/godot/studio/resources/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "engines/godot/studio/tests/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "web/public/models/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "web/public/textures/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "web/public/hdri/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "web/public/decoders/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "web/public/fonts/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "web/src/scenes/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "web/src/components/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "web/src/materials/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "web/src/shaders/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "web/src/loaders/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "web/src/postfx/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "web/src/ui/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "web/src/lib/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "web/tests/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "shots/_template/layout/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "shots/_template/anim/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "shots/_template/fx/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "shots/_template/lighting/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "shots/_template/comp/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "cache/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "renders/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "deliveries/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": ".agents/lanes/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": ".agents/handoff/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": ".agents/logs/.gitkeep",
+      "lines": []
+    }
+  ],
+  "agents": {
+    "purpose": [
+      "`{{project}}` is a 3D studio workspace for Blender, Houdini, UE5, Godot and Three.js/web.",
+      "Read the scoped `AGENTS.md` in `dcc/blender/`, `dcc/houdini/`, `engines/ue5/`, `engines/godot/` or `web/` before working there."
+    ],
+    "rules": [
+      "- Run `git lfs install` before the first commit so `.gitattributes` binaries use Git LFS.",
+      "- One folder per asset in the deepest existing category folder (e.g. `assets/environments/modular/<asset_id>/`), copied from `assets/_template/` with `asset.yaml` filled in.",
+      "- Per asset: editable sources in `source/<tool>/`, full-res texture sources in `textures/source/`, baked textures in `textures/baked/`, turntables/thumbnails in `preview/`, and final published files in `export/` (`fbx/`, `glb/`, `usd/`, `abc/`, `vdb/`).",
+      "- Never put DCC source files (`.blend`, `.hip`, `.ztl`, `.spp`) in engine or web folders; assets made in Blender or Houdini arrive there as exports from the asset's `export/` folder, while engine-native assets (Blueprints, maps, materials, `.tres`, `.gdshader`) are authored in the engine.",
+      "- The asset's `export/glb/` is the source GLB; `tools/convert/` scripts write the compressed web copy (Draco/meshopt GLB, KTX2 textures) to `web/public/models/` and `web/public/textures/`.",
+      "- Create `Studio.uproject`, `project.godot`, `export_presets.cfg` and `package.json` with the real tool (Unreal Editor, Godot editor, or the package manager/project scaffolder), never by hand.",
+      "- Record only verified tool versions in `TOOLS.lock`.",
+      "- `.agents/lanes/<agent>/` is your only scratch space for files outside the engines (unreviewed Unreal assets go in `engines/ue5/Studio/Content/_Dev/`); put handoff notes in `.agents/handoff/`."
+    ]
+  },
+  "gitignore": [
+    "cache/*",
+    "!cache/.gitkeep",
+    "renders/*",
+    "!renders/.gitkeep",
+    ".agents/logs/*",
+    "!.agents/logs/.gitkeep",
+    "engines/ue5/Studio/Binaries/",
+    "engines/ue5/Studio/Intermediate/",
+    "engines/ue5/Studio/Saved/",
+    "engines/ue5/Studio/DerivedDataCache/",
+    "engines/ue5/Studio/Plugins/*/Binaries/",
+    "engines/ue5/Studio/Plugins/*/Intermediate/",
+    "engines/godot/studio/.godot/",
+    "web/dist/",
+    "node_modules/",
+    "*.blend[0-9]*",
+    "__pycache__/",
+    ".env",
+    ".env.*",
+    "!.env.example",
+    ".DS_Store",
+    "Thumbs.db"
+  ],
+  "gitattributes": [
+    "*.blend filter=lfs diff=lfs merge=lfs -text",
+    "*.hip filter=lfs diff=lfs merge=lfs -text",
+    "*.hiplc filter=lfs diff=lfs merge=lfs -text",
+    "*.hipnc filter=lfs diff=lfs merge=lfs -text",
+    "*.hda filter=lfs diff=lfs merge=lfs -text",
+    "*.hdalc filter=lfs diff=lfs merge=lfs -text",
+    "*.hdanc filter=lfs diff=lfs merge=lfs -text",
+    "*.otl filter=lfs diff=lfs merge=lfs -text",
+    "*.bgeo.sc filter=lfs diff=lfs merge=lfs -text",
+    "*.uasset filter=lfs diff=lfs merge=lfs -text",
+    "*.umap filter=lfs diff=lfs merge=lfs -text",
+    "*.fbx filter=lfs diff=lfs merge=lfs -text",
+    "*.exr filter=lfs diff=lfs merge=lfs -text",
+    "*.glb filter=lfs diff=lfs merge=lfs -text",
+    "*.ztl filter=lfs diff=lfs merge=lfs -text",
+    "*.spp filter=lfs diff=lfs merge=lfs -text",
+    "*.sbs filter=lfs diff=lfs merge=lfs -text",
+    "*.sbsar filter=lfs diff=lfs merge=lfs -text",
+    "*.psd filter=lfs diff=lfs merge=lfs -text",
+    "*.tif filter=lfs diff=lfs merge=lfs -text",
+    "*.tiff filter=lfs diff=lfs merge=lfs -text",
+    "*.png filter=lfs diff=lfs merge=lfs -text",
+    "*.jpg filter=lfs diff=lfs merge=lfs -text",
+    "*.jpeg filter=lfs diff=lfs merge=lfs -text",
+    "*.tga filter=lfs diff=lfs merge=lfs -text",
+    "*.hdr filter=lfs diff=lfs merge=lfs -text",
+    "*.ktx2 filter=lfs diff=lfs merge=lfs -text",
+    "*.abc filter=lfs diff=lfs merge=lfs -text",
+    "*.vdb filter=lfs diff=lfs merge=lfs -text",
+    "*.usdc filter=lfs diff=lfs merge=lfs -text",
+    "*.usdz filter=lfs diff=lfs merge=lfs -text",
+    "*.wav filter=lfs diff=lfs merge=lfs -text",
+    "*.flac filter=lfs diff=lfs merge=lfs -text",
+    "*.ogg filter=lfs diff=lfs merge=lfs -text",
+    "*.mp4 filter=lfs diff=lfs merge=lfs -text",
+    "*.mov filter=lfs diff=lfs merge=lfs -text"
+  ]
+}

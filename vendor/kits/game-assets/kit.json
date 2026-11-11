@@ -1,0 +1,319 @@
+{
+  "schema_version": 1,
+  "id": "game-assets",
+  "version": 2,
+  "name": "Game workspace: Unreal + Blender + Houdini",
+  "summary": "Game workspace with one folder per source asset, an explicit source-to-Unreal manifest, and Git LFS rules for Blender, Houdini and texture files.",
+  "tags": [
+    "game",
+    "unreal",
+    "ue5",
+    "blender",
+    "houdini",
+    "assets",
+    "lfs"
+  ],
+  "dirs": [
+    {
+      "path": "design",
+      "summary": "Rules, mechanics and open questions. Design decisions belong to the owner.",
+      "why": "design stays separate from implementation"
+    },
+    {
+      "path": "game",
+      "summary": "Unreal project (`.uproject`, `Source/`, `Content/`). Unreal assets stay here.",
+      "why": "the engine owns its own content tree"
+    },
+    {
+      "path": "assets",
+      "summary": "Shared source assets, one folder per asset. Read `assets/README.md` first.",
+      "why": "editable originals live in exactly one place"
+    },
+    {
+      "path": "assets/environments/kits",
+      "summary": "Reusable modular pieces: walls, floors, trim.",
+      "listed": false
+    },
+    {
+      "path": "assets/environments/locations",
+      "summary": "Assembled places built from kits.",
+      "listed": false
+    },
+    {
+      "path": "assets/materials",
+      "summary": "Shared materials and textures.",
+      "listed": false
+    },
+    {
+      "path": "assets/characters",
+      "summary": "Characters and creatures.",
+      "listed": false
+    },
+    {
+      "path": "assets/props",
+      "summary": "Standalone objects.",
+      "listed": false
+    },
+    {
+      "path": "assets/effects",
+      "summary": "Visual effects sources.",
+      "listed": false
+    },
+    {
+      "path": "assets/audio",
+      "summary": "Sound sources.",
+      "listed": false
+    },
+    {
+      "path": "assets/ui",
+      "summary": "Interface art.",
+      "listed": false
+    },
+    {
+      "path": "assets/templates",
+      "summary": "Example manifests. Illustrations only, never real assets.",
+      "listed": false
+    },
+    {
+      "path": "tools/assets",
+      "summary": "Asset scripts: manifest validation, export and import helpers.",
+      "why": "pipeline code is not mixed with art"
+    },
+    {
+      "path": "tools/blender",
+      "summary": "Blender scripts and add-ons for this project.",
+      "listed": false
+    },
+    {
+      "path": "tools/houdini",
+      "summary": "Houdini scripts and HDA tooling for this project.",
+      "listed": false
+    },
+    {
+      "path": "tests",
+      "summary": "Tests for the tools.",
+      "why": "pipeline scripts are tested"
+    },
+    {
+      "path": "experiments",
+      "summary": "Throwaway trials. Nothing here is part of the main pipeline.",
+      "why": "experiments do not leak into production"
+    },
+    {
+      "path": "builds",
+      "summary": "Disposable build output. Ignored by Git. Never put a unique file here.",
+      "why": "generated output is rebuildable"
+    }
+  ],
+  "files": [
+    {
+      "path": "assets/environments/kits/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/environments/locations/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/materials/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/characters/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/props/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/effects/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/audio/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/ui/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "builds/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "design/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "experiments/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "tests/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "tools/assets/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/README.md",
+      "lines": [
+        "# Shared source assets",
+        "",
+        "Use this folder for source assets that have no other owner. Unreal assets stay in the Unreal project.",
+        "A local commit is not a backup. Keep a second copy before discarding originals.",
+        "",
+        "## Categories",
+        "",
+        "| Folder | Contents |",
+        "|---|---|",
+        "| `environments/kits/` | Reusable modular pieces: walls, floors, trim. |",
+        "| `environments/locations/` | Assembled places built from kits. |",
+        "| `materials/` | Shared materials and textures. |",
+        "| `characters/` | Characters and creatures. |",
+        "| `props/` | Standalone objects. |",
+        "| `effects/` | Visual effects sources. |",
+        "| `audio/` | Sound sources. |",
+        "| `ui/` | Interface art. |",
+        "",
+        "## One folder per asset",
+        "",
+        "```text",
+        "assets/<category>/<asset_id>/",
+        "├── asset.json     Explicit mapping from source to Unreal (tracked)",
+        "├── source/        Editable originals: .blend, .hip, textures (tracked, Git LFS)",
+        "└── exports/       Generated FBX/GLB/USD output (ignored, rebuildable)",
+        "```",
+        "",
+        "- `asset_id` is lowercase kebab-case, for example `stone-wall-a`, and matches the folder name.",
+        "- `source/` holds the only originals. `exports/` is disposable: never put a unique file there.",
+        "- Simulation and geometry caches (`.vdb`, `.bgeo.sc`, bakes) live outside this repository.",
+        "- Prefer `.usda` or `.usdc` over bare `.usd`, so text and binary files are told apart.",
+        "",
+        "## asset.json",
+        "",
+        "Every asset folder has an `asset.json` (see `templates/asset.example.json`). It states, without guessing:",
+        "",
+        "- `schema_version`: currently `1`.",
+        "- `asset_id`: same as the folder name.",
+        "- `source_files`: paths inside `source/`.",
+        "- `outputs`: one entry per exported file with `source`, `export`, `unreal_package` (a folder starting with `/Game/`), `object_name`, and `import_settings`.",
+        "- `tool_versions`: the exact Blender, Houdini and Unreal versions actually used.",
+        "",
+        "Paths are relative to the asset folder and use forward slashes. No absolute paths, no `..`, no symlinks out of the folder.",
+        "Asset IDs and Unreal destinations must be unique across all assets."
+      ]
+    },
+    {
+      "path": "assets/templates/asset.example.json",
+      "json": {
+        "_comment": "ILLUSTRATIVE EXAMPLE ONLY. Not a real asset.",
+        "schema_version": 1,
+        "asset_id": "example-crate",
+        "source_files": [
+          "source/example-crate.blend"
+        ],
+        "outputs": [
+          {
+            "source": "source/example-crate.blend",
+            "export": "exports/example-crate.fbx",
+            "unreal_package": "/Game/Props/ExampleCrate",
+            "object_name": "SM_ExampleCrate",
+            "import_settings": {
+              "type": "static_mesh",
+              "generate_collision": true,
+              "import_materials": false
+            }
+          }
+        ],
+        "tool_versions": {
+          "blender": "REPLACE with exact version",
+          "unreal": "REPLACE with exact version"
+        }
+      }
+    },
+    {
+      "path": "tools/blender/README.md",
+      "lines": [
+        "# Blender",
+        "",
+        "Project Blender scripts and add-ons live here.",
+        "Save Blender sources under `assets/<category>/<asset_id>/source/` and describe them in `asset.json`. See `assets/README.md`.",
+        "Exports go in that asset's ignored `exports/` folder. Keep bakes and caches outside the repository."
+      ]
+    },
+    {
+      "path": "tools/houdini/README.md",
+      "lines": [
+        "# Houdini",
+        "",
+        "Project Houdini scripts and HDA tooling live here.",
+        "Save Houdini sources (`.hip`, HDAs) under `assets/<category>/<asset_id>/source/` and describe them in `asset.json`. See `assets/README.md`.",
+        "Exports go in that asset's ignored `exports/` folder. Keep geometry and simulation caches outside the repository.",
+        "Houdini output reaches Unreal as exported files unless a live bridge has been installed and verified for this project."
+      ]
+    }
+  ],
+  "agents": {
+    "purpose": [
+      "`{{project}}` is a game workspace: design, the Unreal project, shared source assets and the tools that move assets into the engine."
+    ],
+    "rules": [
+      "- One folder per asset: `assets/<category>/<asset_id>/` with `asset.json`, `source/` and `exports/`. Categories: `environments/kits`, `environments/locations`, `materials`, `characters`, `props`, `effects`, `audio`, `ui`.",
+      "- `source/` holds the only originals. `exports/` and `builds/` are disposable and ignored: never save a unique file there.",
+      "- Caches (Houdini geometry and simulation caches, Blender bakes) stay outside the repository.",
+      "- Record the exact Blender, Houdini and Unreal versions in `asset.json`. Do not guess a version.",
+      "- Do not rename Unreal modules, change the engine version, or move the Unreal project unless asked.",
+      "- Do not copy an asset that already lives in the Unreal project into `assets/`.",
+      "- Binary sources under `assets/` use Git LFS (see `.gitattributes`). Run `git lfs install` once before the first commit.",
+      "- Design decisions are the owner's. Mark your ideas as proposals."
+    ]
+  },
+  "gitignore": [
+    "builds/*",
+    "!builds/.gitkeep",
+    "/assets/**/exports/",
+    "/assets/**/cache/",
+    "/assets/**/source/*.blend[0-9]*",
+    "__pycache__/",
+    ".env",
+    ".env.*",
+    "!.env.example",
+    ".DS_Store",
+    "Thumbs.db"
+  ],
+  "gitattributes": [
+    "assets/**/*.blend filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.hip filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.hiplc filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.hipnc filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.hda filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.hdalc filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.hdanc filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.spp filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.sbsar filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.psd filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.kra filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.fbx filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.glb filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.png filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.jpg filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.jpeg filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.tga filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.tif filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.tiff filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.exr filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.wav filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.flac filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.ogg filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.mp3 filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.usdc filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.usdz filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.abc filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.mp4 filter=lfs diff=lfs merge=lfs -text",
+    "assets/**/*.mov filter=lfs diff=lfs merge=lfs -text"
+  ]
+}

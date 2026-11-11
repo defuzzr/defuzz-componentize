@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "id": "web-app",
+  "version": 1,
+  "name": "Web app + design assets",
+  "summary": "Web application workspace with handed-over design sources, design tokens, raw and optimised assets, app code, unit and e2e tests, and Git LFS rules.",
+  "tags": [
+    "frontend",
+    "website",
+    "figma",
+    "tokens",
+    "css",
+    "handoff",
+    "ui",
+    "github"
+  ],
+  "dirs": [
+    {
+      "path": "design",
+      "summary": "Everything from the design side.",
+      "why": "design inputs stay separate from application code"
+    },
+    {
+      "path": "design/sources",
+      "summary": "Read-only `.fig`, `.sketch`, `.psd`, `.ai` as handed over.",
+      "listed": false
+    },
+    {
+      "path": "design/tokens",
+      "summary": "Colour, type and spacing tokens as `.json`.",
+      "listed": false
+    },
+    {
+      "path": "design/specs",
+      "summary": "Screens, flows, redlines, component notes.",
+      "listed": false
+    },
+    {
+      "path": "design/exports",
+      "summary": "Raw exports from the design tool, unoptimised.",
+      "listed": false
+    },
+    {
+      "path": "public",
+      "summary": "Served as-is: favicon, `robots.txt`, OG images.",
+      "why": "fixed-URL static files stay separate from bundled assets"
+    },
+    {
+      "path": "public/fonts",
+      "summary": "Self-hosted web fonts with licences.",
+      "listed": false
+    },
+    {
+      "path": "src",
+      "summary": "Application source.",
+      "why": "application code lives in one tree"
+    },
+    {
+      "path": "src/assets",
+      "summary": "Optimised images and icons imported by code.",
+      "listed": false
+    },
+    {
+      "path": "src/components",
+      "summary": "Reusable UI components.",
+      "listed": false
+    },
+    {
+      "path": "src/pages",
+      "summary": "Routes and page-level views.",
+      "listed": false
+    },
+    {
+      "path": "src/styles",
+      "summary": "Global CSS and generated token CSS.",
+      "listed": false
+    },
+    {
+      "path": "src/lib",
+      "summary": "API clients, helpers, shared logic.",
+      "listed": false
+    },
+    {
+      "path": "src/state",
+      "summary": "Stores and data hooks.",
+      "listed": false
+    },
+    {
+      "path": "tests",
+      "summary": "Automated tests.",
+      "why": "unit and browser tests stay with the project"
+    },
+    {
+      "path": "tests/unit",
+      "summary": "Component and logic tests.",
+      "listed": false
+    },
+    {
+      "path": "tests/e2e",
+      "summary": "Browser tests.",
+      "listed": false
+    },
+    {
+      "path": "scripts",
+      "summary": "Asset optimisation, token build, codegen.",
+      "why": "build and asset scripts stay out of application code"
+    },
+    {
+      "path": "deploy",
+      "summary": "Hosting config.",
+      "why": "deployment changes are isolated for review"
+    },
+    {
+      "path": ".github",
+      "summary": "GitHub settings; Actions workflows live in `.github/workflows/`.",
+      "why": "GitHub only runs workflows from this folder"
+    },
+    {
+      "path": ".github/workflows",
+      "summary": "GitHub Actions workflow files (CI and deploy).",
+      "listed": false
+    },
+    {
+      "path": "docs",
+      "summary": "Architecture notes and decisions.",
+      "why": "decisions survive between sessions"
+    }
+  ],
+  "files": [
+    {
+      "path": "FOLDERS.md",
+      "lines": [
+        "# Folder map",
+        "",
+        "What each folder is for. Read this before adding a file.",
+        "",
+        "- `design/`: Everything from the design side.",
+        "- `design/sources/`: Read-only `.fig`, `.sketch`, `.psd`, `.ai` as handed over.",
+        "- `design/tokens/`: Colour, type and spacing tokens as `.json`.",
+        "- `design/specs/`: Screens, flows, redlines, component notes.",
+        "- `design/exports/`: Raw exports from the design tool, unoptimised.",
+        "- `public/`: Served as-is: favicon, `robots.txt`, OG images.",
+        "- `public/fonts/`: Self-hosted web fonts with licences.",
+        "- `src/`: Application source.",
+        "- `src/assets/`: Optimised images and icons imported by code.",
+        "- `src/components/`: Reusable UI components.",
+        "- `src/pages/`: Routes and page-level views.",
+        "- `src/styles/`: Global CSS and generated token CSS.",
+        "- `src/lib/`: API clients, helpers, shared logic.",
+        "- `src/state/`: Stores and data hooks.",
+        "- `tests/`: Automated tests.",
+        "- `tests/unit/`: Component and logic tests.",
+        "- `tests/e2e/`: Browser tests.",
+        "- `scripts/`: Asset optimisation, token build, codegen.",
+        "- `deploy/`: Hosting config.",
+        "- `.github/`: GitHub settings; Actions workflows live in `.github/workflows/`.",
+        "- `.github/workflows/`: GitHub Actions workflow files (CI and deploy).",
+        "- `docs/`: Architecture notes and decisions."
+      ]
+    },
+    {
+      "path": ".env.example",
+      "lines": [
+        "# Environment variable names only (no values).",
+        "# EXAMPLE_VAR="
+      ]
+    },
+    {
+      "path": "design/sources/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "design/tokens/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "design/specs/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "design/exports/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "public/fonts/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "src/assets/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "src/components/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "src/pages/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "src/styles/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "src/lib/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "src/state/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "tests/unit/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "tests/e2e/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "scripts/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "deploy/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "docs/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": ".github/workflows/.gitkeep",
+      "lines": []
+    }
+  ],
+  "agents": {
+    "purpose": [
+      "`{{project}}` is a web application workspace with handed-over design sources, tokens, application code, tests and deployment config."
+    ],
+    "rules": [
+      "- Each folder's purpose is in `FOLDERS.md`; read it before adding a file.",
+      "- Never edit `design/sources/`; a design change comes from the designer.",
+      "- Asset flow is one way: `design/exports/` -> the optimise script in `scripts/` (if none exists yet, ask) -> `src/assets/` or `public/`.",
+      "- Colours, font sizes and spacing come from `design/tokens/`; never hard-code a value that has a token.",
+      "- Generated token CSS in `src/styles/` is rebuilt by script, never hand-edited.",
+      "- A file goes in `public/` only if it needs a fixed URL (self-hosted web fonts served by URL go in `public/fonts/`); everything else goes in `src/assets/`.",
+      "- Never commit `.env`; add new variable names to `.env.example` with no value.",
+      "- Create `package.json` with your package manager, not by hand. Adding or upgrading a dependency needs approval.",
+      "- Every new component gets a unit test in `tests/unit/`.",
+      "- Deploying, or changing anything in `deploy/` or `.github/workflows/`, needs approval.",
+      "- Never commit `dist/`, `node_modules/` or `coverage/`. The build tool, package manager and test runner create them.",
+      "- Run `git lfs install` once before the first commit."
+    ]
+  },
+  "gitignore": [
+    "dist/",
+    "node_modules/",
+    "coverage/",
+    ".DS_Store",
+    "Thumbs.db",
+    ".env",
+    ".env.*",
+    "!.env.example"
+  ],
+  "gitattributes": [
+    "*.fig filter=lfs diff=lfs merge=lfs -text",
+    "*.sketch filter=lfs diff=lfs merge=lfs -text",
+    "*.psd filter=lfs diff=lfs merge=lfs -text",
+    "*.ai filter=lfs diff=lfs merge=lfs -text",
+    "*.xd filter=lfs diff=lfs merge=lfs -text",
+    "*.png filter=lfs diff=lfs merge=lfs -text",
+    "*.jpg filter=lfs diff=lfs merge=lfs -text",
+    "*.webp filter=lfs diff=lfs merge=lfs -text",
+    "*.avif filter=lfs diff=lfs merge=lfs -text",
+    "*.mp4 filter=lfs diff=lfs merge=lfs -text",
+    "*.woff2 filter=lfs diff=lfs merge=lfs -text",
+    "*.ttf filter=lfs diff=lfs merge=lfs -text",
+    "*.otf filter=lfs diff=lfs merge=lfs -text"
+  ]
+}

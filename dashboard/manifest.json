@@ -1,0 +1,9 @@
+{
+  "name": "defuzz-componentize",
+  "label": "Componentize",
+  "description": "Status, settings-draft check and bundled kit preview routes for defuzz-componentize; none of them writes.",
+  "icon": "Package",
+  "version": "0.2.0",
+  "tab": { "hidden": true },
+  "api": "plugin_api.py"
+}

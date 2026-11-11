@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "id": "image-set",
+  "version": 1,
+  "name": "Image generation set",
+  "summary": "AI still-image generation workspace: read-only references, prompts, ComfyUI workflows, model notes, staged outputs from raw to approved finals, and contact sheets; not LoRA training or a render queue.",
+  "tags": [
+    "image",
+    "images",
+    "stills",
+    "comfyui",
+    "diffusion",
+    "generative",
+    "prompts",
+    "upscale",
+    "inpaint"
+  ],
+  "dirs": [
+    {
+      "path": "refs",
+      "summary": "Reference images supplied by the user. Read-only, never modify.",
+      "why": "user references stay untouched across runs"
+    },
+    {
+      "path": "refs/style",
+      "summary": "Look, palette and lighting references. Read-only, never modify.",
+      "listed": false
+    },
+    {
+      "path": "refs/subject",
+      "summary": "Character, object and pose references. Read-only, never modify.",
+      "listed": false
+    },
+    {
+      "path": "refs/control",
+      "summary": "Depth, pose, canny and mask inputs. Read-only, never modify.",
+      "listed": false
+    },
+    {
+      "path": "prompts",
+      "summary": "One .md per series: positive, negative, seed, settings.",
+      "why": "every select can be reproduced from its recorded settings"
+    },
+    {
+      "path": "prompts/wildcards",
+      "summary": "Reusable token lists, one term per line.",
+      "listed": false
+    },
+    {
+      "path": "workflows",
+      "summary": "ComfyUI workflow .json files, versioned by filename; retired ones in archive/.",
+      "why": "workflow changes never overwrite earlier versions"
+    },
+    {
+      "path": "workflows/archive",
+      "summary": "Retired workflows kept to reproduce old outputs.",
+      "listed": false
+    },
+    {
+      "path": "models",
+      "summary": "Notes only: name, source URL, hash, trigger words.",
+      "why": "model weights stay out of Git while provenance stays tracked"
+    },
+    {
+      "path": "outputs",
+      "summary": "Everything generated: raw, selects, upscales, edits (inpaint/retouch), finals.",
+      "why": "raw generations, selects, edits and approved finals stay separate"
+    },
+    {
+      "path": "outputs/raw",
+      "summary": "Every generation, in YYYY-MM-DD subfolders. Ignored by Git and disposable.",
+      "listed": false
+    },
+    {
+      "path": "outputs/selects",
+      "summary": "Picks copied from raw, original filenames kept.",
+      "listed": false
+    },
+    {
+      "path": "outputs/upscales",
+      "summary": "Upscaled or detailed versions of selects.",
+      "listed": false
+    },
+    {
+      "path": "outputs/edits",
+      "summary": "Inpaint, retouch and composite working files.",
+      "listed": false
+    },
+    {
+      "path": "outputs/finals",
+      "summary": "Approved deliverables with final names.",
+      "listed": false
+    },
+    {
+      "path": "contact-sheets",
+      "summary": "Comparison grids for reviewing batches. Disposable, safe to regenerate.",
+      "why": "batch review sheets stay separate from individual outputs"
+    },
+    {
+      "path": "logs",
+      "summary": "Run logs and queue dumps. Ignored by Git and disposable.",
+      "why": "diagnostic output does not clutter the repository"
+    }
+  ],
+  "files": [
+    {
+      "path": "FOLDERS.md",
+      "lines": [
+        "# Folder map",
+        "",
+        "What each folder is for. Read this before adding a file.",
+        "",
+        "- `refs/`: Reference images supplied by the user. Read-only, never modify.",
+        "- `refs/style/`: Look, palette and lighting references. Read-only, never modify.",
+        "- `refs/subject/`: Character, object and pose references. Read-only, never modify.",
+        "- `refs/control/`: Depth, pose, canny and mask inputs. Read-only, never modify.",
+        "- `prompts/`: One .md per series: positive, negative, seed, settings.",
+        "- `prompts/wildcards/`: Reusable token lists, one term per line.",
+        "- `workflows/`: ComfyUI workflow .json files, versioned by filename; retired ones in archive/.",
+        "- `workflows/archive/`: Retired workflows kept to reproduce old outputs.",
+        "- `models/`: Notes only: name, source URL, hash, trigger words.",
+        "- `outputs/`: Everything generated: raw, selects, upscales, edits (inpaint/retouch), finals.",
+        "- `outputs/raw/`: Every generation, in YYYY-MM-DD subfolders. Ignored by Git and disposable.",
+        "- `outputs/selects/`: Picks copied from raw, original filenames kept.",
+        "- `outputs/upscales/`: Upscaled or detailed versions of selects.",
+        "- `outputs/edits/`: Inpaint, retouch and composite working files.",
+        "- `outputs/finals/`: Approved deliverables with final names.",
+        "- `contact-sheets/`: Comparison grids for reviewing batches. Disposable, safe to regenerate.",
+        "- `logs/`: Run logs and queue dumps. Ignored by Git and disposable."
+      ]
+    },
+    {
+      "path": "refs/style/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "refs/subject/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "refs/control/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "prompts/wildcards/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "workflows/archive/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "outputs/raw/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "outputs/selects/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "outputs/upscales/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "outputs/edits/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "outputs/finals/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "contact-sheets/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "logs/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "models/checkpoints.md",
+      "lines": [
+        "# Checkpoints",
+        "",
+        "Record each checkpoint model used in this project: name, source URL, hash, and trigger words.",
+        "",
+        "| Name | Source URL | Hash | Trigger words |",
+        "|---|---|---|---|"
+      ]
+    },
+    {
+      "path": "models/loras.md",
+      "lines": [
+        "# LoRAs",
+        "",
+        "Record each LoRA used in this project: name, source URL, hash, and trigger words.",
+        "",
+        "| Name | Source URL | Hash | Trigger words |",
+        "|---|---|---|---|"
+      ]
+    },
+    {
+      "path": "models/embeddings.md",
+      "lines": [
+        "# Embeddings",
+        "",
+        "Record each textual inversion or embedding used in this project: name, source URL, hash, and trigger words.",
+        "",
+        "| Name | Source URL | Hash | Trigger words |",
+        "|---|---|---|---|"
+      ]
+    }
+  ],
+  "agents": {
+    "purpose": [
+      "`{{project}}` is an image-set workspace for generating, selecting, upscaling, editing, and delivering still image series."
+    ],
+    "rules": [
+      "- Each folder's purpose is in `FOLDERS.md`; read it before adding a file.",
+      "- New generations go in `outputs/raw/YYYY-MM-DD/` and nowhere else.",
+      "- Never write, rename or delete anything in `refs/`.",
+      "- Copy from `outputs/raw/` to `outputs/selects/`; do not move, and do not rename.",
+      "- An upscale in `outputs/upscales/` keeps the select's filename plus `_2x` or `_4x`.",
+      "- Every select gets a line in `prompts/<series>.md`: prompt, seed, model, workflow file.",
+      "- A changed workflow in `workflows/` is saved as a new file (`name_v02.json`); never overwrite one.",
+      "- Never put model weights in this repo; record them in `models/*.md` (`models/checkpoints.md`, `models/loras.md`, `models/embeddings.md`).",
+      "- Files enter `outputs/finals/` only after the user approves them.",
+      "- Deleting anything outside `outputs/raw/`, `contact-sheets/` or `logs/` needs approval.",
+      "- Run `git lfs install` once before the first commit."
+    ]
+  },
+  "gitignore": [
+    "outputs/raw/*",
+    "!outputs/raw/.gitkeep",
+    "logs/*",
+    "!logs/.gitkeep",
+    ".DS_Store",
+    "Thumbs.db",
+    ".env",
+    ".env.*",
+    "!.env.example"
+  ],
+  "gitattributes": [
+    "*.png filter=lfs diff=lfs merge=lfs -text",
+    "*.jpg filter=lfs diff=lfs merge=lfs -text",
+    "*.jpeg filter=lfs diff=lfs merge=lfs -text",
+    "*.webp filter=lfs diff=lfs merge=lfs -text",
+    "*.tif filter=lfs diff=lfs merge=lfs -text",
+    "*.exr filter=lfs diff=lfs merge=lfs -text",
+    "*.psd filter=lfs diff=lfs merge=lfs -text",
+    "*.kra filter=lfs diff=lfs merge=lfs -text"
+  ]
+}

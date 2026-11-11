@@ -1,0 +1,353 @@
+{
+  "schema_version": 1,
+  "id": "lora-training",
+  "version": 1,
+  "name": "LoRA and model training",
+  "summary": "LoRA adapter training workspace for image or text models: staged dataset and captions, datasheets, configs, isolated run folders, fixed evaluation sets and versioned releases; not prompt-based image generation.",
+  "tags": [
+    "lora",
+    "training",
+    "dataset",
+    "captions",
+    "finetune",
+    "checkpoint",
+    "eval",
+    "weights"
+  ],
+  "dirs": [
+    {
+      "path": "data",
+      "summary": "The dataset, by stage.",
+      "why": "raw, cleaned, captions, splits and rejected samples stay separated"
+    },
+    {
+      "path": "data/raw",
+      "summary": "Read-only images or text exactly as collected.",
+      "listed": false
+    },
+    {
+      "path": "data/clean",
+      "summary": "Deduped, cropped, resized, filtered copies of raw.",
+      "listed": false
+    },
+    {
+      "path": "data/captions",
+      "summary": "One .txt per sample, same basename as the sample.",
+      "listed": false
+    },
+    {
+      "path": "data/reg",
+      "summary": "Regularisation or class samples.",
+      "listed": false
+    },
+    {
+      "path": "data/splits",
+      "summary": "Train, val and test manifests.",
+      "listed": false
+    },
+    {
+      "path": "data/rejected",
+      "summary": "Disposable removed samples plus a reasons log.",
+      "listed": false
+    },
+    {
+      "path": "datasheets",
+      "summary": "Source, licence and consent record per data batch.",
+      "why": "provenance and rights are recorded before training"
+    },
+    {
+      "path": "scripts",
+      "summary": "Dedupe, resize, caption, tag and split scripts.",
+      "why": "dataset preparation is reproducible"
+    },
+    {
+      "path": "configs",
+      "summary": "One training config per planned run.",
+      "why": "planned runs are versioned before execution"
+    },
+    {
+      "path": "base-models",
+      "summary": "Base weights or symlinks (ignored by Git); `sources.md` is tracked.",
+      "why": "heavy base weights stay out of Git while provenance stays tracked"
+    },
+    {
+      "path": "runs",
+      "summary": "One folder per run (`YYYYMMDD_name_vNN`), copied from `runs/_template/`.",
+      "why": "runs never overwrite each other"
+    },
+    {
+      "path": "runs/_template",
+      "summary": "Copy this to start a run.",
+      "listed": false
+    },
+    {
+      "path": "runs/_template/checkpoints",
+      "summary": "Weights saved per step or epoch. Ignored by Git.",
+      "listed": false
+    },
+    {
+      "path": "runs/_template/samples",
+      "summary": "Previews generated during training. Ignored by Git and disposable.",
+      "listed": false
+    },
+    {
+      "path": "runs/_template/logs",
+      "summary": "Loss curves, tensorboard, stdout. Ignored by Git and disposable.",
+      "listed": false
+    },
+    {
+      "path": "eval",
+      "summary": "Fixed tests applied to every candidate.",
+      "why": "every candidate checkpoint is compared on the same fixed test set"
+    },
+    {
+      "path": "eval/prompts",
+      "summary": "Fixed eval prompts and seeds.",
+      "listed": false
+    },
+    {
+      "path": "eval/samples",
+      "summary": "Eval grids per checkpoint, same prompts and seeds.",
+      "listed": false
+    },
+    {
+      "path": "eval/reports",
+      "summary": "Comparisons and the chosen checkpoint with reason.",
+      "listed": false
+    },
+    {
+      "path": "release",
+      "summary": "One folder per release (`v1.0`, `v1.1` ...), copied from `release/_template/`.",
+      "why": "only approved final weights and model cards are published"
+    },
+    {
+      "path": "release/_template",
+      "summary": "Copy this to start a release (`v1.0`, `v1.1` ...).",
+      "listed": false
+    },
+    {
+      "path": "release/_template/weights",
+      "summary": "Final weights file, the only weights in LFS.",
+      "listed": false
+    },
+    {
+      "path": "release/_template/card",
+      "summary": "Trigger words, settings, licence, known limits.",
+      "listed": false
+    },
+    {
+      "path": "release/_template/showcase",
+      "summary": "Curated outputs with their prompts.",
+      "listed": false
+    },
+    {
+      "path": "cache",
+      "summary": "Latents, bucket and tokeniser caches. Ignored by Git and disposable.",
+      "why": "cached tensors can always be regenerated"
+    }
+  ],
+  "files": [
+    {
+      "path": "FOLDERS.md",
+      "lines": [
+        "# Folder map",
+        "",
+        "What each folder is for. Read this before adding a file.",
+        "",
+        "- `data/`: The dataset, by stage.",
+        "- `data/raw/`: Read-only images or text exactly as collected.",
+        "- `data/clean/`: Deduped, cropped, resized, filtered copies of raw.",
+        "- `data/captions/`: One .txt per sample, same basename as the sample.",
+        "- `data/reg/`: Regularisation or class samples.",
+        "- `data/splits/`: Train, val and test manifests.",
+        "- `data/rejected/`: Disposable removed samples plus a reasons log.",
+        "- `datasheets/`: Source, licence and consent record per data batch.",
+        "- `scripts/`: Dedupe, resize, caption, tag and split scripts.",
+        "- `configs/`: One training config per planned run.",
+        "- `base-models/`: Base weights or symlinks (ignored by Git); `sources.md` is tracked.",
+        "- `runs/`: One folder per run (`YYYYMMDD_name_vNN`), copied from `runs/_template/`.",
+        "- `runs/_template/`: Copy this to start a run.",
+        "- `runs/_template/checkpoints/`: Weights saved per step or epoch. Ignored by Git.",
+        "- `runs/_template/samples/`: Previews generated during training. Ignored by Git and disposable.",
+        "- `runs/_template/logs/`: Loss curves, tensorboard, stdout. Ignored by Git and disposable.",
+        "- `eval/`: Fixed tests applied to every candidate.",
+        "- `eval/prompts/`: Fixed eval prompts and seeds.",
+        "- `eval/samples/`: Eval grids per checkpoint, same prompts and seeds.",
+        "- `eval/reports/`: Comparisons and the chosen checkpoint with reason.",
+        "- `release/`: One folder per release (`v1.0`, `v1.1` ...), copied from `release/_template/`.",
+        "- `release/_template/`: Copy this to start a release (`v1.0`, `v1.1` ...).",
+        "- `release/_template/weights/`: Final weights file, the only weights in LFS.",
+        "- `release/_template/card/`: Trigger words, settings, licence, known limits.",
+        "- `release/_template/showcase/`: Curated outputs with their prompts.",
+        "- `cache/`: Latents, bucket and tokeniser caches. Ignored by Git and disposable."
+      ]
+    },
+    {
+      "path": "data/raw/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "data/clean/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "data/captions/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "data/reg/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "data/splits/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "data/rejected/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "datasheets/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "scripts/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "configs/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "base-models/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "base-models/sources.md",
+      "lines": [
+        "# Base Models",
+        "",
+        "Record each base model placed or symlinked in this folder: filename, upstream source, licence, and checksum.",
+        "",
+        "| File | Source | Licence | Checksum |",
+        "|---|---|---|---|"
+      ]
+    },
+    {
+      "path": "runs/_template/notes.md",
+      "lines": [
+        "# Run Notes",
+        "",
+        "Record what changed in this run, the training result, and the verdict.",
+        "",
+        "- **Changes:** ",
+        "- **Result:** ",
+        "- **Verdict:** "
+      ]
+    },
+    {
+      "path": "runs/_template/checkpoints/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "runs/_template/samples/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "runs/_template/logs/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "eval/prompts/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "eval/samples/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "eval/reports/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "release/_template/weights/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "release/_template/card/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "release/_template/showcase/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "cache/.gitkeep",
+      "lines": []
+    }
+  ],
+  "agents": {
+    "purpose": [
+      "`{{project}}` is a LoRA and model training workspace.",
+      "Start a run by copying `runs/_template/` to `runs/<run>/` and a release by copying `release/_template/` to `release/<version>/`."
+    ],
+    "rules": [
+      "- Each folder's purpose is in `FOLDERS.md`; read it before adding a file.",
+      "- Never modify or delete `data/raw/`; cleaning writes new files to `data/clean/`.",
+      "- Every sample in `data/clean/` has exactly one caption file in `data/captions/` with the same basename.",
+      "- A removed sample is moved to `data/rejected/` with a one-line reason added to a reasons log in `data/rejected/`; never just deleted.",
+      "- Every run gets a new folder in `runs/` (copied from `runs/_template/`); never reuse or overwrite a run folder.",
+      "- Write one training config per planned run in `configs/`; copy it unchanged into `runs/<run>/` (keep its file name and extension) before training starts and do not edit it afterwards.",
+      "- Never change `eval/prompts/` or the seeds once the first run has been evaluated.",
+      "- Every checkpoint under consideration is evaluated with the full fixed prompt set, with grids saved in `eval/samples/` and comparisons in `eval/reports/`.",
+      "- Checkpoints stay in `runs/<run>/checkpoints/` (ignored by Git); only the final weights file in `release/<version>/weights/` is committed.",
+      "- Adding data from a new source needs a datasheet in `datasheets/` and approval.",
+      "- Creating a `release/` version (copied from `release/_template/`) or publishing weights needs approval.",
+      "- Run `git lfs install` once before the first commit."
+    ]
+  },
+  "gitignore": [
+    "base-models/*",
+    "!base-models/.gitkeep",
+    "!base-models/sources.md",
+    "runs/*/checkpoints/*",
+    "!runs/*/checkpoints/.gitkeep",
+    "runs/*/samples/*",
+    "!runs/*/samples/.gitkeep",
+    "runs/*/logs/*",
+    "!runs/*/logs/.gitkeep",
+    "cache/*",
+    "!cache/.gitkeep",
+    "__pycache__/",
+    ".env",
+    ".env.*",
+    "!.env.example",
+    ".DS_Store",
+    "Thumbs.db"
+  ],
+  "gitattributes": [
+    "data/**/*.png filter=lfs diff=lfs merge=lfs -text",
+    "data/**/*.jpg filter=lfs diff=lfs merge=lfs -text",
+    "data/**/*.jpeg filter=lfs diff=lfs merge=lfs -text",
+    "data/**/*.webp filter=lfs diff=lfs merge=lfs -text",
+    "data/**/*.parquet filter=lfs diff=lfs merge=lfs -text",
+    "data/**/*.jsonl filter=lfs diff=lfs merge=lfs -text",
+    "data/**/*.zip filter=lfs diff=lfs merge=lfs -text",
+    "eval/**/*.png filter=lfs diff=lfs merge=lfs -text",
+    "eval/**/*.jpg filter=lfs diff=lfs merge=lfs -text",
+    "eval/**/*.jpeg filter=lfs diff=lfs merge=lfs -text",
+    "eval/**/*.webp filter=lfs diff=lfs merge=lfs -text",
+    "eval/**/*.parquet filter=lfs diff=lfs merge=lfs -text",
+    "eval/**/*.jsonl filter=lfs diff=lfs merge=lfs -text",
+    "eval/**/*.zip filter=lfs diff=lfs merge=lfs -text",
+    "release/**/*.png filter=lfs diff=lfs merge=lfs -text",
+    "release/**/*.jpg filter=lfs diff=lfs merge=lfs -text",
+    "release/**/*.jpeg filter=lfs diff=lfs merge=lfs -text",
+    "release/**/*.webp filter=lfs diff=lfs merge=lfs -text",
+    "release/**/*.parquet filter=lfs diff=lfs merge=lfs -text",
+    "release/**/*.jsonl filter=lfs diff=lfs merge=lfs -text",
+    "release/**/*.zip filter=lfs diff=lfs merge=lfs -text",
+    "release/**/*.safetensors filter=lfs diff=lfs merge=lfs -text",
+    "release/**/*.gguf filter=lfs diff=lfs merge=lfs -text"
+  ]
+}

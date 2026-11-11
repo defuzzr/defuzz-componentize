@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "id": "video-production",
+  "version": 2,
+  "name": "Video production",
+  "summary": "AI-assisted video production workspace: locked canon references, generated candidates, approved assets, storyboards, footage, audio, renders and numbered deliverables; not a YouTube channel or a comic.",
+  "tags": [
+    "video",
+    "ai",
+    "storyboard",
+    "footage",
+    "production",
+    "generative",
+    "lfs"
+  ],
+  "dirs": [
+    {
+      "path": "assets/canon",
+      "summary": "Locked reference images plus `CANON.md`. Source of truth for how things look.",
+      "why": "every generation is checked against canon"
+    },
+    {
+      "path": "assets/references",
+      "summary": "Outside reference material: mood, style, real-world photos.",
+      "why": "inspiration is kept apart from canon"
+    },
+    {
+      "path": "assets/characters",
+      "summary": "Character sheets: identity, proportions, wardrobe.",
+      "why": "characters are built once and reused per shot"
+    },
+    {
+      "path": "assets/generated",
+      "summary": "New candidates straight from a generator. Not approved.",
+      "why": "unreviewed output never mixes with approved work"
+    },
+    {
+      "path": "assets/approved",
+      "summary": "Candidates the owner approved. Move files here only on approval.",
+      "why": "approval is explicit"
+    },
+    {
+      "path": "storyboards",
+      "summary": "Storyboard panels and sequence files.",
+      "why": "framing and story intent"
+    },
+    {
+      "path": "prompts",
+      "summary": "Prompts, saved with the references each one used.",
+      "why": "results can be reproduced"
+    },
+    {
+      "path": "footage/raw",
+      "summary": "Original camera or source footage. Read-only.",
+      "why": "originals are never altered"
+    },
+    {
+      "path": "footage/proxies",
+      "summary": "Small working copies of raw footage. Rebuildable.",
+      "why": "edits stay fast"
+    },
+    {
+      "path": "audio",
+      "summary": "Music, voice and sound sources.",
+      "why": "sound is tracked with the picture"
+    },
+    {
+      "path": "renders",
+      "summary": "Render and generation output in progress. Disposable.",
+      "why": "work in progress is rebuildable"
+    },
+    {
+      "path": "review",
+      "summary": "Review sheets and side-by-side comparisons awaiting a decision.",
+      "why": "one place for pending decisions"
+    },
+    {
+      "path": "deliverables",
+      "summary": "Finished packages, one folder each (`<Title>-rNN`). Never edited after delivery.",
+      "why": "delivered work stays reproducible"
+    },
+    {
+      "path": "manifests",
+      "summary": "Lists of what each deliverable contains and which revision.",
+      "why": "page and shot numbers resolve to exact files"
+    },
+    {
+      "path": "archive",
+      "summary": "Retired versions. Never use as a source or reference.",
+      "why": "rejected work must not leak back in"
+    },
+    {
+      "path": "docs",
+      "summary": "Notes and decisions.",
+      "why": "context survives between sessions"
+    },
+    {
+      "path": "tools",
+      "summary": "Project scripts.",
+      "why": "pipeline code is not mixed with media"
+    }
+  ],
+  "files": [
+    {
+      "path": "assets/references/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/characters/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/generated/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/approved/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "storyboards/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "prompts/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "footage/raw/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "footage/proxies/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "audio/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "renders/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "review/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "deliverables/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "manifests/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "archive/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "docs/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "tools/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "assets/canon/CANON.md",
+      "lines": [
+        "# Canon",
+        "",
+        "List every locked reference here: file name, what it controls, and the date it was approved.",
+        "",
+        "| File | Controls | Approved |",
+        "|---|---|---|"
+      ]
+    }
+  ],
+  "placement": [
+    {
+      "kind": "images",
+      "match_ext": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".webp"
+      ],
+      "dest_dir": "assets/generated",
+      "lfs": true,
+      "reason": "unreviewed generator output, approved by moving it out"
+    },
+    {
+      "kind": "video",
+      "match_ext": [
+        ".mp4",
+        ".mov",
+        ".webm",
+        ".mkv"
+      ],
+      "dest_dir": "renders",
+      "lfs": true
+    },
+    {
+      "kind": "audio",
+      "match_ext": [
+        ".wav",
+        ".mp3",
+        ".flac",
+        ".ogg"
+      ],
+      "dest_dir": "audio",
+      "lfs": true
+    }
+  ],
+  "agents": {
+    "purpose": [
+      "`{{project}}` is a video production workspace. Build reusable assets first (sets, characters, details), then direct shots from them."
+    ],
+    "rules": [
+      "- Read `assets/canon/CANON.md` at the start of every task.",
+      "- Never read, reference, or source anything from `archive/`.",
+      "- New generator output goes in `assets/generated/` or `renders/`. Move a file to `assets/approved/` only when the owner approves it. A file named `final` or the newest file is not approval.",
+      "- Before generating or editing, state the asset's role: environment plate, character reference, detail or prop reference, shot reference, or finished shot. Do not silently turn one role into another.",
+      "- Always pass the required reference images to the generator. Do not generate a canon subject from a text prompt alone.",
+      "- Save each candidate with its exact prompt and the list of references used, in `prompts/`.",
+      "- One review item at a time: make only the requested change, show it, and wait for direction.",
+      "- A deliverable is a new folder `deliverables/<Title>-rNN`. Never edit a delivered folder; make the next revision number.",
+      "- `footage/raw/` is read-only. Work on copies in `footage/proxies/`.",
+      "- For packaging or review requests, assemble existing files. Do not generate or fix artwork unless asked."
+    ]
+  },
+  "gitignore": [
+    "renders/*",
+    "!renders/.gitkeep",
+    "footage/proxies/*",
+    "!footage/proxies/.gitkeep",
+    "__pycache__/",
+    ".env",
+    ".env.*",
+    "!.env.example",
+    ".DS_Store",
+    "Thumbs.db"
+  ],
+  "gitattributes": [
+    "*.png filter=lfs diff=lfs merge=lfs -text",
+    "*.jpg filter=lfs diff=lfs merge=lfs -text",
+    "*.jpeg filter=lfs diff=lfs merge=lfs -text",
+    "*.tif filter=lfs diff=lfs merge=lfs -text",
+    "*.tiff filter=lfs diff=lfs merge=lfs -text",
+    "*.exr filter=lfs diff=lfs merge=lfs -text",
+    "*.psd filter=lfs diff=lfs merge=lfs -text",
+    "*.kra filter=lfs diff=lfs merge=lfs -text",
+    "*.mp4 filter=lfs diff=lfs merge=lfs -text",
+    "*.mov filter=lfs diff=lfs merge=lfs -text",
+    "*.mkv filter=lfs diff=lfs merge=lfs -text",
+    "*.webm filter=lfs diff=lfs merge=lfs -text",
+    "*.wav filter=lfs diff=lfs merge=lfs -text",
+    "*.flac filter=lfs diff=lfs merge=lfs -text",
+    "*.mp3 filter=lfs diff=lfs merge=lfs -text",
+    "*.ogg filter=lfs diff=lfs merge=lfs -text",
+    "*.pdf filter=lfs diff=lfs merge=lfs -text"
+  ]
+}

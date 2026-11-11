@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "id": "research-writing",
+  "version": 1,
+  "name": "Research and writing",
+  "summary": "Research and writing workspace: read-only sources, reading and synthesis notes, versioned outlines, section drafts, figures, citations and frozen releases.",
+  "tags": [
+    "research",
+    "writing",
+    "paper",
+    "report",
+    "citations",
+    "bibtex",
+    "thesis",
+    "literature",
+    "essay",
+    "academic",
+    "outline",
+    "dissertation"
+  ],
+  "dirs": [
+    {
+      "path": "sources",
+      "summary": "Everything cited or consulted (`index.md`, `pdfs/`, `web/`, `data/`).",
+      "why": "cited material is preserved intact so every claim can be verified"
+    },
+    {
+      "path": "sources/pdfs",
+      "summary": "Papers and reports as downloaded. Read-only, never modify.",
+      "listed": false
+    },
+    {
+      "path": "sources/web",
+      "summary": "Saved pages with URL and access date. Read-only, never modify.",
+      "listed": false
+    },
+    {
+      "path": "sources/data",
+      "summary": "Datasets as received. Read-only, never modify.",
+      "listed": false
+    },
+    {
+      "path": "notes",
+      "summary": "Your own words about the sources (`reading/`, `synthesis/`, `scratch/`).",
+      "why": "reading notes and synthesis stay separate from raw sources and drafts"
+    },
+    {
+      "path": "notes/reading",
+      "summary": "One note per source, named by citation key.",
+      "listed": false
+    },
+    {
+      "path": "notes/synthesis",
+      "summary": "Themes, comparisons and claims with source keys.",
+      "listed": false
+    },
+    {
+      "path": "notes/scratch",
+      "summary": "Loose thoughts. Disposable, safe to clear.",
+      "listed": false
+    },
+    {
+      "path": "outline",
+      "summary": "Structure and argument, versioned by filename.",
+      "why": "structural revisions never overwrite earlier outlines"
+    },
+    {
+      "path": "drafts",
+      "summary": "Working text, one file per section.",
+      "why": "prose in progress stays separate from notes and published releases"
+    },
+    {
+      "path": "analysis",
+      "summary": "Notebooks and scripts that compute results.",
+      "why": "calculations stay reproducible from code"
+    },
+    {
+      "path": "figures",
+      "summary": "Charts and diagrams (`src/` scripts and editable files, `out/` exports).",
+      "why": "figure sources and exported graphics stay separate"
+    },
+    {
+      "path": "figures/src",
+      "summary": "Scripts and editable files that make the figures.",
+      "listed": false
+    },
+    {
+      "path": "figures/out",
+      "summary": "Exported figures referenced by the drafts.",
+      "listed": false
+    },
+    {
+      "path": "tables",
+      "summary": "Table data as .csv and rendered tables.",
+      "why": "tabular outputs and their source data live in one place"
+    },
+    {
+      "path": "citations",
+      "summary": "`references.bib` and the citation style file.",
+      "why": "bibliography entries and citation formatting stay centralized"
+    },
+    {
+      "path": "reviews",
+      "summary": "Feedback and responses, one folder per round.",
+      "why": "reviewer comments and responses stay organized by round"
+    },
+    {
+      "path": "build",
+      "summary": "Compiled PDF or HTML and aux files. Ignored by Git and disposable.",
+      "why": "compiled output is disposable and never committed"
+    },
+    {
+      "path": "published",
+      "summary": "Final versions as released, dated, frozen.",
+      "why": "released versions remain immutable"
+    }
+  ],
+  "files": [
+    {
+      "path": "FOLDERS.md",
+      "lines": [
+        "# Folder map",
+        "",
+        "What each folder is for. Read this before adding a file.",
+        "",
+        "- `sources/`: Everything cited or consulted (`index.md`, `pdfs/`, `web/`, `data/`).",
+        "- `sources/pdfs/`: Papers and reports as downloaded. Read-only, never modify.",
+        "- `sources/web/`: Saved pages with URL and access date. Read-only, never modify.",
+        "- `sources/data/`: Datasets as received. Read-only, never modify.",
+        "- `notes/`: Your own words about the sources (`reading/`, `synthesis/`, `scratch/`).",
+        "- `notes/reading/`: One note per source, named by citation key.",
+        "- `notes/synthesis/`: Themes, comparisons and claims with source keys.",
+        "- `notes/scratch/`: Loose thoughts. Disposable, safe to clear.",
+        "- `outline/`: Structure and argument, versioned by filename.",
+        "- `drafts/`: Working text, one file per section.",
+        "- `analysis/`: Notebooks and scripts that compute results.",
+        "- `figures/`: Charts and diagrams (`src/` scripts and editable files, `out/` exports).",
+        "- `figures/src/`: Scripts and editable files that make the figures.",
+        "- `figures/out/`: Exported figures referenced by the drafts.",
+        "- `tables/`: Table data as .csv and rendered tables.",
+        "- `citations/`: `references.bib` and the citation style file.",
+        "- `reviews/`: Feedback and responses, one folder per round.",
+        "- `build/`: Compiled PDF or HTML and aux files. Ignored by Git and disposable.",
+        "- `published/`: Final versions as released, dated, frozen."
+      ]
+    },
+    {
+      "path": "brief.md",
+      "lines": [
+        "# Brief",
+        "",
+        "Record the research question, target audience, scope, target length, and deadline.",
+        "",
+        "| Field | Value |",
+        "|---|---|",
+        "| Question | |",
+        "| Audience | |",
+        "| Scope | |",
+        "| Length | |",
+        "| Deadline | |"
+      ]
+    },
+    {
+      "path": "sources/index.md",
+      "lines": [
+        "# Source Index",
+        "",
+        "Record one row per source: citation key, title, and where it is used.",
+        "",
+        "| Citation Key | Title | Where Used |",
+        "|---|---|---|"
+      ]
+    },
+    {
+      "path": "sources/pdfs/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "sources/web/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "sources/data/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "notes/reading/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "notes/synthesis/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "notes/scratch/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "outline/outline_v01.md",
+      "lines": [
+        "# Outline v01",
+        "",
+        "Never edit an outline in place; save every change as the next file (`outline/outline_v02.md`, `outline/outline_v03.md`)."
+      ]
+    },
+    {
+      "path": "drafts/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "analysis/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "figures/src/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "figures/out/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "tables/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "citations/references.bib",
+      "lines": [
+        "% BibTeX entries for sources listed in sources/index.md"
+      ]
+    },
+    {
+      "path": "reviews/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "build/.gitkeep",
+      "lines": []
+    },
+    {
+      "path": "published/.gitkeep",
+      "lines": []
+    }
+  ],
+  "agents": {
+    "purpose": [
+      "`{{project}}` is a research and writing workspace."
+    ],
+    "rules": [
+      "- Each folder's purpose is in `FOLDERS.md`; read it before adding a file.",
+      "- Every source gets a citation key, a line in `sources/index.md` and an entry in `citations/references.bib`.",
+      "- Never edit downloaded or received files in `sources/pdfs/`, `sources/web/` or `sources/data/`; the only file in `sources/` you may change is `sources/index.md` (add one line per new source and keep its entries up to date).",
+      "- Every factual claim in `drafts/` carries a citation key; no key, no claim.",
+      "- Never cite a source that is not saved in `sources/`.",
+      "- A direct quote is copied exactly and includes a page or section number.",
+      "- Scripts that draw figures live in `figures/src/`; scripts that compute results live in `analysis/`. Figures in `figures/out/` are produced only by something in `figures/src/`; never hand-edit an export.",
+      "- Drafts in `drafts/` are edited in place; never edit an outline in place, save every change as the next file (`outline/outline_v02.md`, `outline/outline_v03.md`).",
+      "- Changing `brief.md`, the central argument or the section structure needs approval.",
+      "- `published/` is written once per release and never edited afterwards.",
+      "- Run `git lfs install` once before the first commit."
+    ]
+  },
+  "gitignore": [
+    "build/*",
+    "!build/.gitkeep",
+    ".DS_Store",
+    "Thumbs.db",
+    ".env",
+    ".env.*",
+    "!.env.example"
+  ],
+  "gitattributes": [
+    "*.pdf filter=lfs diff=lfs merge=lfs -text",
+    "*.epub filter=lfs diff=lfs merge=lfs -text",
+    "*.png filter=lfs diff=lfs merge=lfs -text",
+    "*.jpg filter=lfs diff=lfs merge=lfs -text",
+    "*.tif filter=lfs diff=lfs merge=lfs -text",
+    "*.xlsx filter=lfs diff=lfs merge=lfs -text",
+    "*.parquet filter=lfs diff=lfs merge=lfs -text",
+    "*.docx filter=lfs diff=lfs merge=lfs -text",
+    "sources/data/**/*.csv filter=lfs diff=lfs merge=lfs -text"
+  ]
+}

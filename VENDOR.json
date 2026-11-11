@@ -1,0 +1,119 @@
+{
+  "origin": "the author's upstream source tree (componentize engine and hermes_audit modules); not published separately",
+  "license": "MIT",
+  "source_commit": "ee835599e433dadaee9cbfe84e893c60c37176fb",
+  "files": {
+    "componentize/_plugins.py": {
+      "source_sha256": "f447af2854769feef26550f494cd2d39a04c4d05b7706f85de7fb4361da49061",
+      "vendor_sha256": "6dece36110ab94668e7ee6acd3be757c1da066bf55214cad606c6c32154693a6"
+    },
+    "hermes_audit/tool_schema_cost.py": {
+      "source_sha256": "61401bdd83465e3826a22e3e792453779d953c27e4ba40b18fd1980f74666114",
+      "vendor_sha256": "6e8fec6a08b5bf5ae2c7a651be8e09e2c5b87aae3d0366dc6458a312a0957a37"
+    },
+    "componentize/__init__.py": {
+      "source_sha256": "2231d15749360cdc2f16b10779b9ac5e206f9884c4f274149ec474ee1f6d5645",
+      "vendor_sha256": "7f2ebe2ed10c923bbc7033e984d3201d43cc96429675ed1c55c22f5bc00ee0ba"
+    },
+    "componentize/_io.py": {
+      "source_sha256": "3f31ba90b5de8239948408267d4550be621702b8caa10b263f390ecd597ca683",
+      "vendor_sha256": "50692923e0073616a4dd6340d71d1f4da9a7dbacd9a1a69cd57c28a5bbdeda67"
+    },
+    "componentize/_state.py": {
+      "source_sha256": "9a5d8d21caaf8dd17a877c4751cfde0d76935d6c28ae6f8a05f895d549b14a76",
+      "vendor_sha256": "41a8e189032e975357c90b79b18105e006d6fe62d1c469ead1f355583f391879"
+    },
+    "componentize/componentize.py": {
+      "source_sha256": "8b46adf799d87d26130da5045b983e842d20c9dbdc21726fd239c3157f56ad88",
+      "vendor_sha256": "935323d01915cc7c71a7257d5c2a087a27b3828b0bff133375611b5710dd9c6e"
+    },
+    "componentize/PROCEDURE.md": {
+      "source_sha256": "3fbd1510bbfaceb999ec3a4a9c2276e1480d2ffa33adb16ef1505fbb7d555bdf",
+      "vendor_sha256": "3fbd1510bbfaceb999ec3a4a9c2276e1480d2ffa33adb16ef1505fbb7d555bdf"
+    },
+    "componentize/spec.example.json": {
+      "source_sha256": "327a73a0ab2e831439edf46a2ce8193018b74e0eae82b1045d260e4f1dfb5a5f",
+      "vendor_sha256": "327a73a0ab2e831439edf46a2ce8193018b74e0eae82b1045d260e4f1dfb5a5f"
+    },
+    "hermes_audit/__init__.py": {
+      "source_sha256": "d668060a614f3e0678700f200cc0f204b693049b230d06c093879848e2c03d5d",
+      "vendor_sha256": "18a5402e9bbf9bf2083285dd32802857bfedcc1cecf66932804b8783df6e803b"
+    },
+    "hermes_audit/architecture_gate.py": {
+      "source_sha256": "b67c6a74ad58e828436939df7d326971989d4a6cb85add6139f437da898b8f1b",
+      "vendor_sha256": "821bcc3c1f8d2e437034ed5700e04cfef7c458d4dbd5978d5a28fda04c09a08d"
+    },
+    "hermes_audit/componentize_evidence.py": {
+      "source_sha256": "f9d85d30735b3301266965632ece6670d0528a6f6d6f800cb6b802a0af9d715e",
+      "vendor_sha256": "78480056d408537486ba3d48120f45ef10203e6af40f3ba100e47fabe3c72629"
+    },
+    "hermes_audit/componentize_survey.py": {
+      "source_sha256": "c89ae08cbe51965d240227e1e2cdfc71af0a5b0103ea49885894e19ecfc11b59",
+      "vendor_sha256": "d985ccb1cc995291efd5df3071dba7e6eb019bfed3d0c35189a888edde268b35"
+    },
+    "hermes_audit/COMPONENTS.md": {
+      "source_sha256": "fde9e8fdf941446709f3f48a3026be0d73705890132bd7aaa6fc9662ff1548b6",
+      "vendor_sha256": "37af4d8b3af18cf646e05a3ddbf1b98b6f0a844718449aa7fd37733f5873ebc8"
+    },
+    "hermes_audit/project_kit.py": {
+      "source_sha256": "98bd902efcc3ef1b77ad2e41f6c0efd6104cbe48e77ff13a4a76852c750c868e",
+      "vendor_sha256": "e0a5ce5452d3b44e156542400e37f78841c5a00db3066b4c0e384d35b31f8901"
+    },
+    "kits/component-library/kit.json": {
+      "source_sha256": "3d168fc01cb7bf19b50391023b658605cf3cec91406b598dfac1d51e839cfc75",
+      "vendor_sha256": "3d168fc01cb7bf19b50391023b658605cf3cec91406b598dfac1d51e839cfc75"
+    },
+    "kits/game-assets/kit.json": {
+      "source_sha256": "8b7209c7e576fdec522b5958308c0a7644b002b8ed22670bc68580c2955577d7",
+      "vendor_sha256": "8b7209c7e576fdec522b5958308c0a7644b002b8ed22670bc68580c2955577d7"
+    },
+    "kits/video-production/kit.json": {
+      "source_sha256": "79310240f32aff47c7532cad2892da0cf18c79d0d34882c97f2a4cff2728bd8a",
+      "vendor_sha256": "79310240f32aff47c7532cad2892da0cf18c79d0d34882c97f2a4cff2728bd8a"
+    },
+    "kits/client-job/kit.json": {
+      "source_sha256": "40641db6e6c7167c9c00e60003849afe78906dd622a37d4978f0b76fbbfedbf5",
+      "vendor_sha256": "40641db6e6c7167c9c00e60003849afe78906dd622a37d4978f0b76fbbfedbf5"
+    },
+    "kits/comic-storyboard/kit.json": {
+      "source_sha256": "b6873b320ef4a46c892c86db7e5106c11691d6da975650c1e5912b152fe6d44d",
+      "vendor_sha256": "b6873b320ef4a46c892c86db7e5106c11691d6da975650c1e5912b152fe6d44d"
+    },
+    "kits/godot-game/kit.json": {
+      "source_sha256": "9397311f25d90363ee72a49351cf9566492701442794b3ae332916f71c68ce33",
+      "vendor_sha256": "9397311f25d90363ee72a49351cf9566492701442794b3ae332916f71c68ce33"
+    },
+    "kits/homelab/kit.json": {
+      "source_sha256": "e4a428c529108682755ce58367e86648e24579b327451127c7a864c85e1edb33",
+      "vendor_sha256": "e4a428c529108682755ce58367e86648e24579b327451127c7a864c85e1edb33"
+    },
+    "kits/image-set/kit.json": {
+      "source_sha256": "c6c220336db0fb2ada026f3a0be3b133f0d0a47f8567394f560b35729f84d238",
+      "vendor_sha256": "c6c220336db0fb2ada026f3a0be3b133f0d0a47f8567394f560b35729f84d238"
+    },
+    "kits/lora-training/kit.json": {
+      "source_sha256": "d27512049da5a57a9d01f3d16b75e2bffbbd179b45748db88e893994033f3e82",
+      "vendor_sha256": "d27512049da5a57a9d01f3d16b75e2bffbbd179b45748db88e893994033f3e82"
+    },
+    "kits/music-production/kit.json": {
+      "source_sha256": "a1f7a63a4530bff841609e8f433474e81b1e3c1d94f8e0006be7727b49570ec6",
+      "vendor_sha256": "a1f7a63a4530bff841609e8f433474e81b1e3c1d94f8e0006be7727b49570ec6"
+    },
+    "kits/research-writing/kit.json": {
+      "source_sha256": "f8ef2ee22ed20bc95554aed70a0b86813fabf3398b0f07272724d9021957c9ee",
+      "vendor_sha256": "f8ef2ee22ed20bc95554aed70a0b86813fabf3398b0f07272724d9021957c9ee"
+    },
+    "kits/studio-3d/kit.json": {
+      "source_sha256": "273ceb2fda4befe1a87484a75990c61f105b2fe4b669433ca7a741487cb3c693",
+      "vendor_sha256": "273ceb2fda4befe1a87484a75990c61f105b2fe4b669433ca7a741487cb3c693"
+    },
+    "kits/video-channel/kit.json": {
+      "source_sha256": "753b8520d9580fd7b2eda01743865d4f367bcb01ccbec3b2107735bec3bbed18",
+      "vendor_sha256": "753b8520d9580fd7b2eda01743865d4f367bcb01ccbec3b2107735bec3bbed18"
+    },
+    "kits/web-app/kit.json": {
+      "source_sha256": "473b1ae83ae0a4d96bd819cf4ba6ae5bd4ad08f685430288d951dcbddbcead7f",
+      "vendor_sha256": "473b1ae83ae0a4d96bd819cf4ba6ae5bd4ad08f685430288d951dcbddbcead7f"
+    }
+  }
+}
