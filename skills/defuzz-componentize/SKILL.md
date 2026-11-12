@@ -1,7 +1,7 @@
 ---
 name: defuzz-componentize
 description: "Use when asked 'componentize <name>'. Gate component work."
-version: 0.2.2
+version: 0.2.3
 author: defuzzr
 license: MIT
 platforms: [linux]
@@ -73,13 +73,18 @@ When a user asks to set up a new project folder of a kind a bundled kit covers:
    deliverable in a worktree, with two-stage review; evaluation material is
    written by a separate agent that has not seen the implementation, and repairs
    to a child's work go to a dispatched fixer on its own branch. Otherwise inline TDD.
-5. Finish with `finish`, then `status`; paste the status line in the final message.
+5. Merge the accepted work into the library first: `finish` checks the files in
+   the library, not a worktree. Then run `finish`, then `status`, and paste the
+   status line in the final message.
 
 ## Pitfalls
 
 - A foreground `terminal` call is capped at 600 seconds; `timeout=900` runs the
   command as a background job whose result arrives later as a completion notice.
   Wait for that notice before reading `status`, and do not re-run the command.
+- `finish` and `check` remove the existing receipt before they check, so a
+  failed run leaves none. Fix the cause and run `finish` again; `check` alone
+  never writes a receipt.
 - Never rebaseline to make a failing check pass — fix the code.
 - Declare every test file and fixture in `inputs`; undeclared files are not in the receipt.
 
